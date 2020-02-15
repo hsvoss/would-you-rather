@@ -1,14 +1,17 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import DataServiceMock from "./service/DataServiceMock";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+      <div className="App">
+        {console.log(DataServiceMock.getQuestions())}
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo"/>
+          <p>
+            Edit <code>src/App.tsx</code> and save to reload.
         </p>
         <a
           className="App-link"
