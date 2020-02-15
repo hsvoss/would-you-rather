@@ -6,9 +6,9 @@ import VotingOption from "./model/VotingOption";
 
 let users: User[] = [
     {
-        id: 'sarahedo',
-        name: 'Sarah Edo',
-        avatarURL: 'https://material-ui.com/static/images/avatar/3.jpg',
+        id: 'daisy',
+        name: 'Daisy Duck',
+        avatarURL: 'https://www.micky-maus.de/content/images/characters/navigation/Daisy.jpg',
         answers: [
             {questionId: "8xf0y6ziyjabvozdd253nd", choosenAnswer: 'optionOne'},
             {questionId: "6ni6ok3ym7mf1p33lnez", choosenAnswer: 'optionTwo'},
@@ -18,9 +18,9 @@ let users: User[] = [
         questionIDs: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9']
     },
     {
-        id: 'tylermcginnis',
-        name: 'Tyler McGinnis',
-        avatarURL: 'https://material-ui.com/static/images/avatar/1.jpg',
+        id: 'donald',
+        name: 'Donald Duck',
+        avatarURL: 'https://www.micky-maus.de/content/images/characters/navigation/Donald.jpg',
         answers: [
             {questionId: "vthrdm985a262al8qx3do", choosenAnswer: 'optionOne'},
             {questionId: "xj352vofupe1dqz9emx13r", choosenAnswer: 'optionTwo'},
@@ -28,9 +28,9 @@ let users: User[] = [
         questionIDs: ['loxhs1bqm25b708cmbf3g', 'vthrdm985a262al8qx3do'],
     },
     {
-        id: 'johndoe',
-        name: 'John Doe',
-        avatarURL: 'https://material-ui.com/static/images/avatar/2.jpg',
+        id: 'micky',
+        name: 'Micky Maus',
+        avatarURL: 'https://www.micky-maus.de/content/images/characters/navigation/Micky.jpg',
         answers: [
             {questionId: "xj352vofupe1dqz9emx13r", choosenAnswer: 'optionOne'},
             {questionId: "vthrdm985a262al8qx3do", choosenAnswer: 'optionTwo'},
@@ -42,10 +42,10 @@ let users: User[] = [
 
 let questions: Question[] = [
     new Question('8xf0y6ziyjabvozdd253nd',
-        'sarahedo',
+        'daisy',
         1467166872634,
         new VotingOption(
-            ['sarahedo'],
+            ['daisy'],
             'have horrible short term memory'),
         new VotingOption(
             [],
@@ -53,62 +53,62 @@ let questions: Question[] = [
 
 
     new Question('8xf0y6ziyjabvozdd253nd',
-        'sarahedo',
+        'daisy',
         1467166872634,
         new VotingOption(
-            ['sarahedo'],
+            ['daisy'],
             'have horrible short term memory'),
         new VotingOption(
             [],
             'have horrible long term memory'
         )),
     new Question('6ni6ok3ym7mf1p33lnez',
-        'johndoe',
+        'micky',
         1468479767190,
         new VotingOption([],
             'become a superhero'),
         new VotingOption(
-            ['johndoe', 'sarahedo'],
+            ['micky', 'daisy'],
             'become a supervillain')),
 
 
     new Question('am8ehyc8byjqgar0jgpub9',
-        'sarahedo',
+        'daisy',
         1488579767190,
         new VotingOption([],
             'be telekinetic'),
         new VotingOption(
-            ['sarahedo'],
+            ['daisy'],
             'be telepathic')),
 
 
     new Question('loxhs1bqm25b708cmbf3g',
-        'tylermcginnis',
+        'donald',
         1482579767190,
         new VotingOption([],
             'be a front-end developer'),
         new VotingOption(
-            ['sarahedo'],
+            ['daisy'],
             'be a back-end developer')),
 
 
     new Question('vthrdm985a262al8qx3do',
-        'tylermcginnis',
+        'donald',
         1489579767190,
-        new VotingOption(['tylermcginnis'],
+        new VotingOption(['donald'],
             'find $50 yourself'),
         new VotingOption(
-            ['johndoe'],
+            ['micky'],
             'have your best friend find $500')),
 
 
     new Question('xj352vofupe1dqz9emx13r',
-        'johndoe',
+        'micky',
         1493579767190,
-        new VotingOption(['johndoe'],
+        new VotingOption(['micky'],
             'write JavaScript'),
         new VotingOption(
-            ['tylermcginnis'],
+            ['donald'],
             'write Swift')),
 ];
 
