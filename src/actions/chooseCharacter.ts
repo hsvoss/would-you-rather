@@ -1,13 +1,9 @@
-export const SET_CHOOSEN_CHARACTER = 'SET_CHOOSEN_CHARACTER';
+export const SET_CHOOSEN_CHARACTER: string = 'SET_CHOOSEN_CHARACTER';
 
-interface ChooseCharacter {
-    type: typeof SET_CHOOSEN_CHARACTER,
-    characterId: string
-}
 
-export function setChoosenCharactr(characterId: string): ChooseCharacter {
+export function setChoosenCharactr(characterId: string) {
     return {
         type: SET_CHOOSEN_CHARACTER,
-        characterId,
-    }
+        characterId: characterId
+    };
 }

@@ -126,8 +126,8 @@ export default class DataServiceMock {
         })
     };
 
-    public static getUsers = (): Promise<Question[]> => {
-        return new Promise<Question[]>(() => {
+    public static getUsers = (): Promise<User[]> => {
+        return new Promise<User[]>(() => {
             setTimeout(() => users, 1000)
         })
     };

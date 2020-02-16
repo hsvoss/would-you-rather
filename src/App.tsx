@@ -1,43 +1,66 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Paper, Tab, Tabs, Typography} from "@material-ui/core";
 import Login from "./components/Login";
 import 'typeface-roboto';
 import Dashboard from "./components/Dashboard";
 import Leaderboard from "./components/Leaderboard";
 import Poll from "./components/Poll";
+import {connect} from 'react-redux';
+import {Action, Dispatch} from "redux";
+import handleInitialData from "./actions/shared";
 
 
-function App() {
-    const [tabValue, setTabValue] = React.useState(0);
-
-    const handleChange = (event: any, newValue: number) => {
-        setTabValue(newValue);
+class App extends Component<{ dispatch: Dispatch<Action> }, { tabNumber: number }> {
+    state = {
+        tabNumber: 0,
     };
 
-    return (
-        <>
-            <Typography variant="h6">
-                <Tabs
-                    value={tabValue}
-                    onChange={handleChange}
-                    indicatorColor="primary"
-                    textColor="primary"
-                    centered
-                >
-                    <Tab label="Home"/>
-                    <Tab label="Submit a new Question"/>
-                    <Tab label="Leaderboard"/>
-                </Tabs>
-            </Typography>
+    componentDidMount() {
 
-            <Paper>
-                <Login/>
-                <Dashboard/>
-                <Leaderboard/>
-                <Poll/>
-            </Paper>
-        </>
-    );
+        handleInitialData(this.props.dispatch);
+        // this.props.dispatch(action);
+        // const {dispatch} = this.props;
+        // console.log("props: ", dispatch)
+
+    }
+
+
+    private handleTabChange = (event: any, newValue: number) => {
+        this.setState(currentState => ({
+            ...currentState,
+            tabNumber: newValue,
+        }));
+
+    };
+
+    render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
+        return (
+            <>
+                <Typography variant="h6">
+                    <Tabs
+                        value={this.state.tabNumber}
+                        onChange={this.handleTabChange}
+                        indicatorColor="primary"
+                        textColor="primary"
+                        centered
+                    >
+                        <Tab label="Home"/>
+                        <Tab label="Submit a new Question"/>
+                        <Tab label="Leaderboard"/>
+                    </Tabs>
+                </Typography>
+
+                <Paper>
+                    <Login/>
+                    <Dashboard/>
+                    <Leaderboard/>
+                    <Poll/>
+                </Paper>
+            </>
+        );
+    }
+
+
 }
 
-export default App;
+export default connect()(App);

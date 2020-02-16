@@ -1,4 +1,6 @@
-const logger = (store: any) => (next: any) => (action: any) => {
+import {Middleware} from "redux";
+
+const logger: Middleware = store => next => action => {
     console.group(action.type);
     console.log('The action: ', action);
     const returnValue = next(action);
@@ -7,4 +9,4 @@ const logger = (store: any) => (next: any) => (action: any) => {
     return returnValue
 };
 
-export default logger
+export default logger;

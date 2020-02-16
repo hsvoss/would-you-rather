@@ -9,6 +9,7 @@ import reducer from './reducers';
 import {Provider} from 'react-redux';
 
 const store = createStore(reducer, middleware);
+
 ReactDOM.render(
     <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
