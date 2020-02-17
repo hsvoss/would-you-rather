@@ -6,28 +6,20 @@ import Dashboard from "./components/Dashboard";
 import Leaderboard from "./components/Leaderboard";
 import Poll from "./components/Poll";
 import {connect} from 'react-redux';
-import handleInitialData from "./actions/shared";
+import handleInitialData from "./store/initialization";
+import {LoadingBar} from "react-redux-loading";
+import DataServiceMock from "./service/DataServiceMock";
+import {AppState} from "./store";
 
 
-class App extends Component<{ dispatch: any }, { tabNumber: number }> {
+class App extends Component<{ dispatch: Function, loading: boolean }, { tabNumber: number }> {
     state = {
         tabNumber: 0,
     };
 
     componentDidMount() {
-        // this.props.dispatch(handleInitialData());
-
-        // handleInitialData(this.props.dispatch);
-
         this.props.dispatch(handleInitialData())
-
-
-        // this.props.dispatch(action);
-        // const {dispatch} = this.props;
-        // console.log("props: ", dispatch)
-
     }
-
 
     private handleTabChange = (event: any, newValue: number) => {
         this.setState(currentState => ({
@@ -40,6 +32,7 @@ class App extends Component<{ dispatch: any }, { tabNumber: number }> {
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
         return (
             <>
+                <LoadingBar/>
                 <Typography variant="h6">
                     <Tabs
                         value={this.state.tabNumber}
@@ -56,9 +49,13 @@ class App extends Component<{ dispatch: any }, { tabNumber: number }> {
 
                 <Paper>
                     <Login/>
-                    <Dashboard/>
-                    <Leaderboard/>
-                    <Poll/>
+                    {!this.props.loading &&
+                    <>
+                        <Dashboard/>
+                        <Leaderboard/>
+                        <Poll question={DataServiceMock.getInstantQuestion()}/>
+                    </>
+                    }
                 </Paper>
             </>
         );
@@ -67,4 +64,11 @@ class App extends Component<{ dispatch: any }, { tabNumber: number }> {
 
 }
 
-export default connect()(App);
+const mapStateToProps = (state: AppState) => {
+    console.log(state);
+    return ({
+        loading: state.choseCharacter === null,
+    });
+};
+
+export default connect(mapStateToProps)(App);

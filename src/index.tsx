@@ -3,12 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import {CssBaseline, ThemeProvider} from '@material-ui/core';
 import theme from "./theme";
-import middleware from './middleware';
-import {createStore} from 'redux';
-import reducer from './reducers';
+import configureStore from './store';
 import {Provider} from 'react-redux';
 
-const store = createStore(reducer, middleware);
+const store = configureStore();
 
 ReactDOM.render(
     <ThemeProvider theme={theme}>

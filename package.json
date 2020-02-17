@@ -20,7 +20,8 @@
     "redux": "latest",
     "redux-thunk": "^2.3.0",
     "typeface-roboto": "^0.0.75",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "redux-devtools-extension": "latest"
   },
   "scripts": {
     "start": "react-scripts start",

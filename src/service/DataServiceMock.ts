@@ -112,17 +112,12 @@ let questions: Question[] = [
             'write Swift')),
 ];
 
-
-// export function getUsers_2(): any{
-//     return new Promise<User[]>((req, res) => {
-//         setTimeout(() => res({users}), 1000)
-//     })
-// }
-
-
-
 export default class DataServiceMock {
-    
+
+    public static getInstantQuestion = (): Question => {
+        return questions[0];
+    };
+
 
     public static generateUID = (): string => {
         return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
@@ -130,14 +125,14 @@ export default class DataServiceMock {
 
 
     public static getQuestions = (): Promise<Question[]> => {
-        return new Promise<Question[]>((res, rej) => {
-            setTimeout(() => res(questions), 1000)
+        return new Promise<Question[]>((res) => {
+            setTimeout(() => res(questions), 1000);
         })
     };
 
     public static getUsers = (): Promise<User[]> => {
-        return new Promise<User[]>((res, rej) => {
-            setTimeout(() => res(users), 1000)
+        return new Promise<User[]>((res) => {
+            setTimeout(() => res(users), 1000);
         })
     };
 
