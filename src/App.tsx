@@ -6,18 +6,22 @@ import Dashboard from "./components/Dashboard";
 import Leaderboard from "./components/Leaderboard";
 import Poll from "./components/Poll";
 import {connect} from 'react-redux';
-import {Action, Dispatch} from "redux";
 import handleInitialData from "./actions/shared";
 
 
-class App extends Component<{ dispatch: Dispatch<Action> }, { tabNumber: number }> {
+class App extends Component<{ dispatch: any }, { tabNumber: number }> {
     state = {
         tabNumber: 0,
     };
 
     componentDidMount() {
+        // this.props.dispatch(handleInitialData());
 
-        handleInitialData(this.props.dispatch);
+        // handleInitialData(this.props.dispatch);
+
+        this.props.dispatch(handleInitialData())
+
+
         // this.props.dispatch(action);
         // const {dispatch} = this.props;
         // console.log("props: ", dispatch)
