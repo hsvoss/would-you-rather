@@ -49,17 +49,6 @@ let questions: Question[] = [
             'have horrible short term memory'),
         new VotingOption(
             [],
-            'have horrible long term memory')),
-
-
-    new Question('8xf0y6ziyjabvozdd253nd',
-        'daisy',
-        1467166872634,
-        new VotingOption(
-            ['daisy'],
-            'have horrible short term memory'),
-        new VotingOption(
-            [],
             'have horrible long term memory'
         )),
     new Question('6ni6ok3ym7mf1p33lnez',

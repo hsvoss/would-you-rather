@@ -65,9 +65,8 @@ class App extends Component<{ dispatch: Function, loading: boolean }, { tabNumbe
 }
 
 const mapStateToProps = (state: AppState) => {
-    console.log(state);
     return ({
-        loading: state.choseCharacter === null,
+        loading: state.choseCharacter === null || state.questions === null || state.users === null,
     });
 };
 

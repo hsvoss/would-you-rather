@@ -4,7 +4,6 @@ import Question from "../service/model/Question";
 
 class Poll extends Component<{ question: Question }> {
     render() {
-        console.log("pollprops", this.props);
         return (
             <p>Poll</p>
         );
