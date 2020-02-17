@@ -4,7 +4,7 @@ import Question from "../service/model/Question";
 import {hideLoading, showLoading} from "react-redux-loading";
 import {receiveUsers} from "./users";
 
-const CHOOSEN_ID = 'micky';
+const CHOSEN_ID = 'micky';
 
 interface Shared {
     type: typeof RECEIVE_QUESTION,
@@ -35,7 +35,7 @@ export default function handleInitialData() {
 
 // export default async function handleInitialData(dispatch: Dispatch<Action>) {
 //     dispatch(showLoading());
-//     dispatch(setChoosenCharactr(CHOOSEN_ID));
+//     dispatch(setchosenCharactr(choseN_ID));
 //     const {users, questions} = await getInitialData();
 //     dispatch(receiveUsers(users));
 //     dispatch(receiveQuestions(questions));

@@ -10,10 +10,10 @@ let users: User[] = [
         name: 'Daisy Duck',
         avatarURL: 'https://www.micky-maus.de/content/images/characters/navigation/Daisy.jpg',
         answers: [
-            {questionId: "8xf0y6ziyjabvozdd253nd", choosenAnswer: 'optionOne'},
-            {questionId: "6ni6ok3ym7mf1p33lnez", choosenAnswer: 'optionTwo'},
-            {questionId: "am8ehyc8byjqgar0jgpub9", choosenAnswer: 'optionTwo'},
-            {questionId: "loxhs1bqm25b708cmbf3g", choosenAnswer: 'optionTwo'},
+            {questionId: "8xf0y6ziyjabvozdd253nd", chosenAnswer: 'optionOne'},
+            {questionId: "6ni6ok3ym7mf1p33lnez", chosenAnswer: 'optionTwo'},
+            {questionId: "am8ehyc8byjqgar0jgpub9", chosenAnswer: 'optionTwo'},
+            {questionId: "loxhs1bqm25b708cmbf3g", chosenAnswer: 'optionTwo'},
         ],
         questionIDs: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9']
     },
@@ -22,8 +22,8 @@ let users: User[] = [
         name: 'Donald Duck',
         avatarURL: 'https://www.micky-maus.de/content/images/characters/navigation/Donald.jpg',
         answers: [
-            {questionId: "vthrdm985a262al8qx3do", choosenAnswer: 'optionOne'},
-            {questionId: "xj352vofupe1dqz9emx13r", choosenAnswer: 'optionTwo'},
+            {questionId: "vthrdm985a262al8qx3do", chosenAnswer: 'optionOne'},
+            {questionId: "xj352vofupe1dqz9emx13r", chosenAnswer: 'optionTwo'},
         ],
         questionIDs: ['loxhs1bqm25b708cmbf3g', 'vthrdm985a262al8qx3do'],
     },
@@ -32,9 +32,9 @@ let users: User[] = [
         name: 'Micky Maus',
         avatarURL: 'https://www.micky-maus.de/content/images/characters/navigation/Micky.jpg',
         answers: [
-            {questionId: "xj352vofupe1dqz9emx13r", choosenAnswer: 'optionOne'},
-            {questionId: "vthrdm985a262al8qx3do", choosenAnswer: 'optionTwo'},
-            {questionId: "6ni6ok3ym7mf1p33lnez", choosenAnswer: 'optionTwo'}
+            {questionId: "xj352vofupe1dqz9emx13r", chosenAnswer: 'optionOne'},
+            {questionId: "vthrdm985a262al8qx3do", chosenAnswer: 'optionTwo'},
+            {questionId: "6ni6ok3ym7mf1p33lnez", chosenAnswer: 'optionTwo'}
         ],
         questionIDs: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
     }

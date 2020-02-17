@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux'
 
 import {loadingBarReducer} from 'react-redux-loading'
-import chooseUser from "./chooseCharacter";
+import choseUser from "./choseCharacter";
 
 export default combineReducers({
-    chooseUser: chooseUser,
+    choseUser: choseUser,
     loadingBar: loadingBarReducer,
 })

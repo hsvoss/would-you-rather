@@ -19,7 +19,7 @@ export default class Question {
     }
 
     public addAnswer(answer: Answer, userId: string) {
-        if (answer.choosenAnswer === 'optionOne') {
+        if (answer.chosenAnswer === 'optionOne') {
             this.optionOne.userVotedFor.push(userId);
         } else {
             this.optionTwo.userVotedFor.push(userId);

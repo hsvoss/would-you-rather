@@ -1,10 +1,10 @@
 export default class Answer {
     public questionId: string;
-    public choosenAnswer: string;
+    public chosenAnswer: string;
 
-    constructor(questionId: string, choosenAnswer: string) {
+    constructor(questionId: string, chosenAnswer: string) {
         this.questionId = questionId;
-        this.choosenAnswer = choosenAnswer;
+        this.chosenAnswer = chosenAnswer;
     }
 
 }
