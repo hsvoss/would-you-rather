@@ -6,4 +6,8 @@ export default class VotingOption {
         this.userVotedFor = userVotedFor;
         this.text = text;
     }
+
+    public getTotalVotes = () => {
+        return this.text.length;
+    }
 }
