@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {AppState} from "../store";
 import Question from "../service/model/Question";
-import {Button} from "@material-ui/core";
+import Poll, {PREVIEW} from "./Poll";
 
 class Dashboard extends Component<{ questions: Question[] }> {
 
@@ -14,11 +14,11 @@ class Dashboard extends Component<{ questions: Question[] }> {
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
 
         return (
-            <ul>
+            <>
                 {this.props.questions.map(question =>
-                    <li key={question.id}><Button>{question.optionOne.text}</Button></li>
+                    <Poll key={question.id} question={question} pollType={PREVIEW}/>
                 )}
-            </ul>
+            </>
         );
     }
 

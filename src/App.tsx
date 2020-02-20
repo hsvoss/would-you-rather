@@ -4,11 +4,9 @@ import Login from "./components/Login";
 import 'typeface-roboto';
 import Dashboard from "./components/Dashboard";
 import Leaderboard from "./components/Leaderboard";
-import Poll from "./components/Poll";
 import {connect} from 'react-redux';
 import handleInitialData from "./store/initialization";
 import {LoadingBar} from "react-redux-loading";
-import DataServiceMock from "./service/DataServiceMock";
 import {AppState} from "./store";
 
 
@@ -53,7 +51,7 @@ class App extends Component<{ dispatch: Function, loading: boolean }, { tabNumbe
                     <>
                         <Dashboard/>
                         <Leaderboard/>
-                        <Poll question={DataServiceMock.getInstantQuestion()}/>
+                        {/*<Poll question={DataServiceMock.getInstantQuestion()}/>*/}
                     </>
                     }
                 </Paper>
