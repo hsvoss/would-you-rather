@@ -1,6 +1,7 @@
 import React from "react";
 import VotingOption from "../../service/model/VotingOption";
 import {Button, CardContent} from "@material-ui/core";
+import {connect} from "react-redux";
 
 const TakePoll = (props: { optionOne: VotingOption, optionTwo: VotingOption, timestamp: number }) =>
     <CardContent
@@ -11,4 +12,4 @@ const TakePoll = (props: { optionOne: VotingOption, optionTwo: VotingOption, tim
         <p style={{textAlign: 'right'}}>{new Date(props.timestamp).toLocaleString()}</p>
     </CardContent>;
 
-export default TakePoll;
+export default connect()(TakePoll);

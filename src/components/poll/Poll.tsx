@@ -12,7 +12,7 @@ import PreviewPoll from "./PreviewPoll";
 import StatisticPoll from "./StatisticPoll";
 
 
-export const POLL = 'poll';
+export const TAKEPOLL = 'takepoll';
 export const PREVIEW = 'preview';
 export const STATISTICS = 'statistics';
 
@@ -28,7 +28,6 @@ class Poll extends Component<{ question: Question, pollType: string, questions: 
 
         return (
             <Card variant={"outlined"} style={{maxWidth: 800, minWidth: 320}}>
-                {console.log("diese props", this.props)}
                 <CardHeader
                     avatar={
                         <Avatar alt={author?.name} src={author?.avatarURL}/>
@@ -36,7 +35,7 @@ class Poll extends Component<{ question: Question, pollType: string, questions: 
                     title={author?.name + " asks:"}
                     subheader="Would you rather..."
                 />
-                {this.props.pollType === POLL &&
+                {this.props.pollType === TAKEPOLL &&
                 <TakePoll optionOne={optionOne} optionTwo={optionTwo} timestamp={this.props.question.timestamp}/>}
                 {this.props.pollType === PREVIEW &&
                 <PreviewPoll optionOne={optionOne} timestamp={this.props.question.timestamp}/>}
@@ -50,10 +49,9 @@ class Poll extends Component<{ question: Question, pollType: string, questions: 
 
 }
 
-const
-    mapStateToProps = ({questions, users}: { questions: Question[], users: User[] }) => ({
-        questions,
-        users
-    });
+const mapStateToProps = ({questions, users}: { questions: Question[], users: User[] }) => ({
+    questions,
+    users
+});
 
 export default connect(mapStateToProps)(Poll);
