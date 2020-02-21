@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppBar, Avatar, Paper, Tab, Tabs, Toolbar, Typography} from "@material-ui/core";
+import {AppBar, Avatar, IconButton, Paper, Tab, Tabs, Toolbar, Typography} from "@material-ui/core";
 import 'typeface-roboto';
 import Dashboard from "./components/Dashboard";
 import Leaderboard from "./components/Leaderboard";
@@ -10,6 +10,7 @@ import {AppState} from "./store";
 import User from "./service/model/User";
 import Login from "./components/Login";
 import {logout} from "./store/chooseCharacter/actions";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 
 class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: User | undefined }, { tabNumber: number }> {
@@ -54,11 +55,14 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
                                     <Tab label="Submit a new Question"/>
                                     <Tab label="Leaderboard"/>
                                 </Tabs>
-                                <Typography  style={{alignSelf: 'center', marginRight: 5}}>
+                                <Typography style={{alignSelf: 'center', marginRight: 5}}>
                                     Hello {this.props.loggedIn?.name}
                                 </Typography>
-                                <Avatar alt={this.props.loggedIn?.name} src={this.props.loggedIn?.avatarURL}
-                                        onClick={event => this.logout()}/>
+                                <Avatar alt={this.props.loggedIn?.name} src={this.props.loggedIn?.avatarURL}/>
+                                <IconButton color="primary" aria-label="Logout" component="span"
+                                            onClick={() => this.logout()}>
+                                    <ExitToAppIcon/>
+                                </IconButton>
                             </Toolbar>
                         </AppBar>
                         <Paper>
