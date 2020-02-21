@@ -8,8 +8,6 @@ import {receiveUsers} from "./users/actions";
 import {receiveQuestions} from "./questions/actions";
 import {Dispatch} from "redux";
 
-const CHOSEN_ID = "micky";
-
 const getInitialData = async () => {
     const [users, questions] = await Promise.all<User[], Question[]>([
         DataServiceMock.getUsers(),
@@ -25,7 +23,6 @@ export default function handleInitialData(): Function {
     return async (dispatch: Dispatch) => {
         dispatch(showLoading());
         const {users, questions}: { users: User[], questions: Question[] } = await getInitialData();
-        dispatch(setChosenCharacter(CHOSEN_ID));
         dispatch(receiveUsers(users));
         dispatch(receiveQuestions(questions));
         dispatch(hideLoading());

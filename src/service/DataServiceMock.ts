@@ -6,8 +6,19 @@ import VotingOption from "./model/VotingOption";
 
 let users: User[] = [
     {
+        id: 'micky',
+        name: 'Micky',
+        avatarURL: 'https://www.micky-maus.de/content/images/characters/navigation/Micky.jpg',
+        answers: [
+            {questionId: "xj352vofupe1dqz9emx13r", chosenAnswer: 'optionOne'},
+            {questionId: "vthrdm985a262al8qx3do", chosenAnswer: 'optionTwo'},
+            {questionId: "6ni6ok3ym7mf1p33lnez", chosenAnswer: 'optionTwo'}
+        ],
+        questionIDs: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
+    },
+    {
         id: 'daisy',
-        name: 'Daisy Duck',
+        name: 'Daisy',
         avatarURL: 'https://www.micky-maus.de/content/images/characters/navigation/Daisy.jpg',
         answers: [
             {questionId: "8xf0y6ziyjabvozdd253nd", chosenAnswer: 'optionOne'},
@@ -19,7 +30,7 @@ let users: User[] = [
     },
     {
         id: 'donald',
-        name: 'Donald Duck',
+        name: 'Donald',
         avatarURL: 'https://www.micky-maus.de/content/images/characters/navigation/Donald.jpg',
         answers: [
             {questionId: "vthrdm985a262al8qx3do", chosenAnswer: 'optionOne'},
@@ -27,17 +38,6 @@ let users: User[] = [
         ],
         questionIDs: ['loxhs1bqm25b708cmbf3g', 'vthrdm985a262al8qx3do'],
     },
-    {
-        id: 'micky',
-        name: 'Micky Maus',
-        avatarURL: 'https://www.micky-maus.de/content/images/characters/navigation/Micky.jpg',
-        answers: [
-            {questionId: "xj352vofupe1dqz9emx13r", chosenAnswer: 'optionOne'},
-            {questionId: "vthrdm985a262al8qx3do", chosenAnswer: 'optionTwo'},
-            {questionId: "6ni6ok3ym7mf1p33lnez", chosenAnswer: 'optionTwo'}
-        ],
-        questionIDs: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
-    }
 ];
 
 let questions: Question[] = [

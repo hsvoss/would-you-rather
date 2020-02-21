@@ -7,7 +7,6 @@ import {connect} from 'react-redux';
 import handleInitialData from "./store/initialization";
 import {LoadingBar} from "react-redux-loading";
 import {AppState} from "./store";
-import theme from "./theme";
 import User from "./service/model/User";
 import Login from "./components/Login";
 import {logout} from "./store/chooseCharacter/actions";
@@ -35,7 +34,6 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
     }
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
-        console.log("props", this.props)
         return (
             <>
                 <LoadingBar/>
@@ -56,7 +54,7 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
                                     <Tab label="Submit a new Question"/>
                                     <Tab label="Leaderboard"/>
                                 </Tabs>
-                                <Typography style={{marginRight: theme.spacing(2)}}>
+                                <Typography  style={{alignSelf: 'center', marginRight: 5}}>
                                     Hello {this.props.loggedIn?.name}
                                 </Typography>
                                 <Avatar alt={this.props.loggedIn?.name} src={this.props.loggedIn?.avatarURL}
