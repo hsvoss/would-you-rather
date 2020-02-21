@@ -10,6 +10,5 @@ export function setChosenCharacter(characterId: string): CharacterActionTypes {
 export function logout(characterId: string): LogoutAction {
     return {
         type: LOGOUT,
-        characterId: null
     };
 }
