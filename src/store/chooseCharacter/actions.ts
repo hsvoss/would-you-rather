@@ -7,7 +7,7 @@ export function setChosenCharacter(characterId: string): CharacterActionTypes {
     };
 }
 
-export function logout(characterId: string): LogoutAction {
+export function logout(): LogoutAction {
     return {
         type: LOGOUT,
     };
