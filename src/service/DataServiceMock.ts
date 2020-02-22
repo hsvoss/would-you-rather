@@ -125,6 +125,21 @@ export default class DataServiceMock {
         })
     };
 
+    public static saveQuestionAnswer = (authedUser: User, answer: Answer): Promise<void> => {
+
+        function helperMethod(): void {
+            users.find(user => user.id === authedUser.id)
+                ?.questionIDs.push(answer.questionId);
+            let find: Question | undefined = questions.find(q => q.id === answer.questionId);
+            find?.addAnswer(answer, authedUser.id);
+        }
+
+        return new Promise<void>((resolve) => {
+            setTimeout(() => resolve(helperMethod()), 1000)
+        });
+
+    };
+
     public static saveQuestion = (question: Question): Promise<void> => {
         return new Promise<void>(() => {
             setTimeout(() => {
@@ -135,20 +150,6 @@ export default class DataServiceMock {
             }, 1000)
         });
     };
-
-    public static saveQuestionAnswer = (authedUser: User, answer: Answer): Promise<void> => {
-        return new Promise<void>(() => {
-            setTimeout(() => {
-                users.find(user => user.id === authedUser.id)
-                    ?.questionIDs.push(answer.questionId);
-
-
-                let find: Question | undefined = questions.find(q => q.id === answer.questionId);
-                find?.addAnswer(answer, authedUser.id);
-
-            }, 1000)
-        });
-    }
 
 
     // export function _saveQuestionAnswer ({ authedUser, qid, answer }) {

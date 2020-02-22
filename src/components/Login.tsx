@@ -1,4 +1,4 @@
-import React, {Component, Dispatch} from "react";
+import React, {Component} from "react";
 import {connect} from "react-redux";
 import User from "../service/model/User";
 import {AppState} from "../store";
@@ -18,7 +18,8 @@ class Login extends Component<{ users: User[], dispatch: Function }> {
                 <Typography variant="h5" style={{textAlign: 'center'}}>Chose your character:</Typography>
                 <Grid container justify="center">
                     {this.props.users?.map((user: User) =>
-                        <Card key={user.id} style={{margin: 10, padding: 10}} onClick={() => this.props.dispatch(setChosenCharacter(user.id))}>
+                        <Card key={user.id} style={{margin: 10, padding: 10}}
+                              onClick={() => this.props.dispatch(setChosenCharacter(user))}>
                             <Avatar
                                 alt={user?.name} src={user?.avatarURL}
                                 style={{
@@ -41,7 +42,7 @@ class Login extends Component<{ users: User[], dispatch: Function }> {
 
 const mapStateToProps = (state: AppState) => {
         return ({
-            users: state.users,
+            users: state.userState.users,
         });
     }
 ;

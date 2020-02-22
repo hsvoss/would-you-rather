@@ -10,8 +10,8 @@ import {composeWithDevTools} from "redux-devtools-extension";
 
 const rootReducer = combineReducers({
     choseCharacter: choseCharacterReducer,
-    questions: questionsReducer,
-    users: usersReducer,
+    questionState: questionsReducer,
+    userState: usersReducer,
     loadingBar: loadingBarReducer,
 });
 

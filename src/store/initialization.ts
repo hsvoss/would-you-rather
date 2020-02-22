@@ -3,7 +3,6 @@ import DataServiceMock from "../service/DataServiceMock";
 import {hideLoading, showLoading} from "react-redux-loading";
 import Question from "../service/model/Question";
 import User from "../service/model/User";
-import {setChosenCharacter} from "./chooseCharacter/actions";
 import {receiveUsers} from "./users/actions";
 import {receiveQuestions} from "./questions/actions";
 import {Dispatch} from "redux";

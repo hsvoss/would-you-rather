@@ -13,7 +13,7 @@ import {logout} from "./store/chooseCharacter/actions";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 
-class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: User | undefined }, { tabNumber: number }> {
+class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: User | null }, { tabNumber: number }> {
     state = {
         tabNumber: 0,
     };
@@ -81,14 +81,9 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
 
 
 const mapStateToProps = (state: AppState) => {
-        let loggedIn: User | undefined;
-        if (state.users && state.choseCharacter) {
-            loggedIn = (state.users as User[])
-                .find(user => user.id === state.choseCharacter.characterId)
-        }
         return ({
-            loading: state.choseCharacter.characterId === null || state.questions === null || state.users === null,
-            loggedIn: loggedIn
+            loading: state.choseCharacter.authedUser === null || state.questionState.questions === null || state.userState.users === null,
+            loggedIn: state.choseCharacter.authedUser
         });
     }
 ;

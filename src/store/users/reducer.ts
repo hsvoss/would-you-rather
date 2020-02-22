@@ -1,9 +1,12 @@
-import {RECEIVE_USERS, UsersTypes} from "./types";
+import {RECEIVE_USERS, UsersState, UsersTypes} from "./types";
 
-export default function usersReducer(state = null, action: UsersTypes) {
+
+export default function usersReducer(state: UsersState = {users: []}, action: UsersTypes): UsersState {
     switch (action.type) {
         case RECEIVE_USERS :
-            return action.users;
+            return {
+                users: action.users
+            };
         default :
             return state
     }

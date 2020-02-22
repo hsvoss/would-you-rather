@@ -28,8 +28,9 @@ class Dashboard extends Component<{ questions: Question[] }> {
 
 
 function mapStatToProps(state: AppState): { questions: Question[] } {
+    console.log("appState", state);
     return {
-        questions: state.questions,
+        questions: state.questionState.questions,
     };
 }
 

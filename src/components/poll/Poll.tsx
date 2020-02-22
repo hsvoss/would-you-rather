@@ -7,51 +7,63 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import {Avatar} from "@material-ui/core";
 import User from "../../service/model/User";
-import TakePoll from "./TakePoll"
+import TakePoll from "./TakePoll";
 import PreviewPoll from "./PreviewPoll";
 import StatisticPoll from "./StatisticPoll";
+import {AppState} from "../../store";
 
+export const TAKEPOLL = "takepoll";
+export const PREVIEW = "preview";
+export const STATISTICS = "statistics";
 
-export const TAKEPOLL = 'takepoll';
-export const PREVIEW = 'preview';
-export const STATISTICS = 'statistics';
-
-
-class Poll extends Component<{ question: Question, pollType: string, questions: Question[], users: User[] }> {
-
-
+class Poll extends Component<{
+    question: Question;
+    pollType: string;
+    questions: Question[];
+    users: User[];
+}> {
     render() {
+        const {optionOne, optionTwo}: {
+            optionOne: VotingOption;
+            optionTwo: VotingOption;
+        } = this.props.question;
 
-        const {optionOne, optionTwo}: { optionOne: VotingOption, optionTwo: VotingOption } = this.props.question;
-
-        const author: User | undefined = this.props.users.find(user => user.id === this.props.question.authorId);
+        const author: User | undefined = this.props.users.find(
+            user => user.id === this.props.question.authorId
+        );
 
         return (
             <Card variant={"outlined"} style={{maxWidth: 800, minWidth: 320}}>
                 <CardHeader
-                    avatar={
-                        <Avatar alt={author?.name} src={author?.avatarURL}/>
-                    }
+                    avatar={<Avatar alt={author?.name} src={author?.avatarURL}/>}
                     title={author?.name + " asks:"}
                     subheader="Would you rather..."
                 />
-                {this.props.pollType === TAKEPOLL &&
-                <TakePoll optionOne={optionOne} optionTwo={optionTwo} timestamp={this.props.question.timestamp}/>}
-                {this.props.pollType === PREVIEW &&
-                <PreviewPoll optionOne={optionOne} timestamp={this.props.question.timestamp}/>}
-                {this.props.pollType === STATISTICS &&
-                <StatisticPoll optionOne={optionOne} optionTwo={optionTwo}/>}
-
+                {this.props.pollType === TAKEPOLL && (
+                    <TakePoll
+                        optionOne={optionOne}
+                        optionTwo={optionTwo}
+                        questionId={this.props.question.id}
+                        timestamp={this.props.question.timestamp}
+                    />
+                )}
+                {this.props.pollType === PREVIEW && (
+                    <PreviewPoll
+                        optionOne={optionOne}
+                        timestamp={this.props.question.timestamp}
+                    />
+                )}
+                {this.props.pollType === STATISTICS && (
+                    <StatisticPoll optionOne={optionOne} optionTwo={optionTwo}/>
+                )}
             </Card>
         );
     }
-
-
 }
 
-const mapStateToProps = ({questions, users}: { questions: Question[], users: User[] }) => ({
-    questions,
-    users
+const mapStateToProps = (state: AppState) => ({
+    questions: state.questionState.questions,
+    users: state.userState.users
 });
 
 export default connect(mapStateToProps)(Poll);

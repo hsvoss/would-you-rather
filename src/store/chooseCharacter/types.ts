@@ -1,13 +1,15 @@
+import User from "../../service/model/User";
+
 export const SET_CHOSEN_CHARACTER: string = 'SET_CHOSEN_CHARACTER';
 export const LOGOUT: string = 'LOGOUT';
 
 export interface CharacterState {
-    characterId: string | null
+    authedUser: User | null
 }
 
 export interface ChoseCharacterAction {
     type: typeof SET_CHOSEN_CHARACTER,
-    characterId: string
+    authedUser: User | null
 }
 
 export interface LogoutAction {

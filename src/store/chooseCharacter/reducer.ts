@@ -1,14 +1,20 @@
-import {CharacterActionTypes, CharacterState, ChoseCharacterAction, LOGOUT, SET_CHOSEN_CHARACTER} from "./types";
+import {CharacterActionTypes, CharacterState, LOGOUT, SET_CHOSEN_CHARACTER} from "./types";
 
-export default function choseCharacterReducer(state: CharacterState = {characterId: null}, action: CharacterActionTypes): CharacterState {
+function initCharState(): CharacterState {
+    return {
+        authedUser: null,
+    };
+}
+
+export default function choseCharacterReducer(state: CharacterState = initCharState(), action: CharacterActionTypes): CharacterState {
     switch (action.type) {
         case LOGOUT:
             return {
-                characterId: null
+                authedUser: null,
             };
         case SET_CHOSEN_CHARACTER :
             return {
-                characterId: (action as ChoseCharacterAction).characterId
+                authedUser: "authedUser" in action ? action.authedUser : null,
             };
         default:
             return state
