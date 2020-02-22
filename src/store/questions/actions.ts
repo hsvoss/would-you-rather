@@ -4,6 +4,7 @@ import User from "../../service/model/User";
 import DataServiceMock from "../../service/DataServiceMock";
 import Answer from "../../service/model/Answer";
 import {Dispatch} from "redux";
+import {UPDATE_USER_VOTES, UsersTypes} from "../users/types";
 
 
 export function receiveQuestions(questions: Question[]): QuestionsTypes {
@@ -30,13 +31,21 @@ export function answerQuestion(answer: Answer, authedUser: User): Function {
         promise
             .then(value => {
                 console.log("promise resolved", value);
-                const action: QuestionsTypes = {
+                const questionUpdateAction: QuestionsTypes = {
                     type: ANSWER_QUESTION,
                     authedUser: authedUser,
                     answer: answer,
                     question: DataServiceMock.getInstantQuestion(),
                 };
-                dispatch(action);
+                dispatch(questionUpdateAction);
+
+                const userUpdateAction: UsersTypes = {
+                    type: UPDATE_USER_VOTES,
+                    authedUser: authedUser,
+                    answer: answer
+                };
+                dispatch(userUpdateAction)
+
             })
             .catch(reason => {
                 console.log("promise Failed", reason);
