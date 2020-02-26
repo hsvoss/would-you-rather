@@ -11,6 +11,7 @@ import User from "./service/model/User";
 import Login from "./components/Login";
 import {logout} from "./store/chooseCharacter/actions";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 
 class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: User | null }, { tabNumber: number }> {
@@ -66,8 +67,12 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
                             </Toolbar>
                         </AppBar>
                         <Paper>
-                            <Dashboard/>
-                            <Leaderboard/>
+
+                            <Route path='/' exact component={Dashboard} />
+                            {/*<Route path='/tweet/:id' component={TweetPage} />*/}
+                            <Route path='/leaderboard' component={Leaderboard} />
+                            {/*<Dashboard/>*/}
+                            {/*<Leaderboard/>*/}
                             {/*<Poll question={DataServiceMock.getInstantQuestion()}/>*/}
                         </Paper>
                     </>
