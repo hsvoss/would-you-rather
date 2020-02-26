@@ -11,13 +11,24 @@ import User from "./service/model/User";
 import Login from "./components/Login";
 import {logout} from "./store/chooseCharacter/actions";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import {Route, withRouter} from 'react-router-dom'
 
 
-class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: User | null }, { tabNumber: number }> {
+class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: User | null, location: any, history: any }, { tabNumber: number }> {
+
     state = {
-        tabNumber: 0,
+        tabNumber: this.getNumberFromPath(),
     };
+
+    private getNumberFromPath(): number {
+        if (this.props.location.pathname === '/new') {
+            return 1;
+        } else if (this.props.location.pathname === '/leaderboard') {
+            return 2;
+        } else {
+            return 0;
+        }
+    }
 
     componentDidMount() {
         this.props.dispatch(handleInitialData())
@@ -28,6 +39,15 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
             ...currentState,
             tabNumber: newValue,
         }));
+
+        if (newValue === 1) {
+            this.props.history.push('/new');
+        } else if (newValue === 2) {
+            this.props.history.push('/leaderboard');
+        } else {
+            this.props.history.push('/');
+        }
+
 
     };
 
@@ -68,9 +88,9 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
                         </AppBar>
                         <Paper>
 
-                            <Route path='/' exact component={Dashboard} />
+                            <Route path='/' exact component={Dashboard}/>
                             {/*<Route path='/tweet/:id' component={TweetPage} />*/}
-                            <Route path='/leaderboard' component={Leaderboard} />
+                            <Route path='/leaderboard' component={Leaderboard}/>
                             {/*<Dashboard/>*/}
                             {/*<Leaderboard/>*/}
                             {/*<Poll question={DataServiceMock.getInstantQuestion()}/>*/}
@@ -93,4 +113,4 @@ const mapStateToProps = (state: AppState) => {
     }
 ;
 
-export default connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));
