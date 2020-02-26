@@ -7,6 +7,7 @@ import User from "../../service/model/User";
 import Answer from "../../service/model/Answer";
 import {answerQuestion} from "../../store/questions/actions";
 
+
 class TakePoll extends Component<{ optionOne: VotingOption, optionTwo: VotingOption, questionId: string, timestamp: number, authedUser: User | null, dispatch: Function }> {
     render() {
         return <CardContent
@@ -16,17 +17,20 @@ class TakePoll extends Component<{ optionOne: VotingOption, optionTwo: VotingOpt
             >{this.props.optionOne.text}</Button>
             or
             <Button variant="outlined" color="primary" style={{margin: 20}}
-                    onClick={() => this.props.dispatch(answerQuestion(new Answer(this.props.questionId, 'optionTwo'), this.props.authedUser as User))}
+                    onClick={() => {
+                        this.props.dispatch(answerQuestion(new Answer(this.props.questionId, 'optionTwo'), this.props.authedUser as User))
+                    }}
             >{this.props.optionTwo.text}</Button>
             <p style={{textAlign: 'right'}}>{new Date(this.props.timestamp).toLocaleString()}</p>
         </CardContent>;
     }
 }
 
-export default connect(mapStateToProps)(TakePoll);
 
 function mapStateToProps(state: AppState) {
     return {
         authedUser: state.choseCharacter.authedUser
     }
 }
+
+export default connect(mapStateToProps)(TakePoll);

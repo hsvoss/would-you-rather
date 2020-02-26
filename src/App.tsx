@@ -11,7 +11,8 @@ import User from "./service/model/User";
 import Login from "./components/Login";
 import {logout} from "./store/chooseCharacter/actions";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import {Route, withRouter} from 'react-router-dom'
+import {Route, RouteComponentProps, withRouter} from 'react-router-dom'
+import Poll, {TAKEPOLL} from "./components/poll/Poll";
 
 
 class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: User | null, location: any, history: any }, { tabNumber: number }> {
@@ -89,8 +90,8 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
                         <Paper>
 
                             <Route path='/' exact component={Dashboard}/>
-                            {/*<Route path='/tweet/:id' component={TweetPage} />*/}
                             <Route path='/leaderboard' component={Leaderboard}/>
+                            <Route path='/poll/:questionId' render={(router) => this.renderPoll(router)}/>
                             {/*<Dashboard/>*/}
                             {/*<Leaderboard/>*/}
                             {/*<Poll question={DataServiceMock.getInstantQuestion()}/>*/}
@@ -102,6 +103,10 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
     }
 
 
+    private renderPoll(router: RouteComponentProps<any>) {
+        const {questionId} = router.match.params;
+        return <Poll questionId={questionId} pollType={TAKEPOLL}/>;
+    }
 }
 
 

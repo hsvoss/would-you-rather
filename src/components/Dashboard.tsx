@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {AppState} from "../store";
 import Question from "../service/model/Question";
-import Poll, {TAKEPOLL} from "./poll/Poll";
+import Poll, {PREVIEW} from "./poll/Poll";
 
 class Dashboard extends Component<{ questions: Question[] }> {
 
@@ -15,8 +15,8 @@ class Dashboard extends Component<{ questions: Question[] }> {
         return (
             <>
                 {this.props.questions.map(question =>
-                        <Poll key={question.id} question={question} pollType={TAKEPOLL}/>
-                    // <Poll key={question.id} question={question} pollType={PREVIEW}/>
+                        // <Poll key={question.id} question={question} pollType={TAKEPOLL}/>
+                        <Poll key={question.id} questionId={question.id} pollType={PREVIEW}/>
                     // <Poll key={question.id} question={question} pollType={STATISTICS}/>
                 )}
             </>

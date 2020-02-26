@@ -17,7 +17,7 @@ class Leaderboard extends Component<{ questions: Question[] }> {
                 {this.props.questions.map(question =>
                     // <Poll key={question.id} question={question} pollType={TAKEPOLL}/>
                     // <Poll key={question.id} question={question} pollType={PREVIEW}/>
-                    <Poll key={question.id} question={question} pollType={STATISTICS}/>
+                    <Poll key={question.id} questionId={question.id} pollType={STATISTICS}/>
                 )}
             </>
         );

@@ -17,19 +17,28 @@ export const PREVIEW = "preview";
 export const STATISTICS = "statistics";
 
 class Poll extends Component<{
-    question: Question;
+    questionId: string;
     pollType: string;
     questions: Question[];
     users: User[];
 }> {
     render() {
+
+        const question: Question | undefined = findQuestionById(this.props.questionId, this.props.questions);
+
+        if (question === undefined) {
+            return <></>
+        }
+
+
         const {optionOne, optionTwo}: {
             optionOne: VotingOption;
             optionTwo: VotingOption;
-        } = this.props.question;
+        } = question;
+
 
         const author: User | undefined = this.props.users.find(
-            user => user.id === this.props.question.authorId
+            user => user.id === question.authorId
         );
 
         return (
@@ -43,14 +52,15 @@ class Poll extends Component<{
                     <TakePoll
                         optionOne={optionOne}
                         optionTwo={optionTwo}
-                        questionId={this.props.question.id}
-                        timestamp={this.props.question.timestamp}
+                        questionId={this.props.questionId}
+                        timestamp={question.timestamp}
                     />
                 )}
                 {this.props.pollType === PREVIEW && (
                     <PreviewPoll
                         optionOne={optionOne}
-                        timestamp={this.props.question.timestamp}
+                        timestamp={question.timestamp}
+                        quetionId={this.props.questionId}
                     />
                 )}
                 {this.props.pollType === STATISTICS && (
@@ -59,7 +69,13 @@ class Poll extends Component<{
             </Card>
         );
     }
+
+
 }
+
+const findQuestionById = (questionId: string, questions: Question[]): Question | undefined => {
+    return questions.find(question => question.id === questionId);
+};
 
 const mapStateToProps = (state: AppState) => ({
     questions: state.questionState.questions,
