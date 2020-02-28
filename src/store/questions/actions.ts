@@ -5,6 +5,7 @@ import DataServiceMock from "../../service/DataServiceMock";
 import Answer from "../../service/model/Answer";
 import {Dispatch} from "redux";
 import {UPDATE_USER_VOTES, UsersTypes} from "../users/types";
+import {startLoading, stopLoading} from "../loading/actions";
 
 
 export function receiveQuestions(questions: Question[]): QuestionsTypes {
@@ -27,6 +28,7 @@ export function receiveQuestions(questions: Question[]): QuestionsTypes {
 export function answerQuestion(answer: Answer, authedUser: User): Function {
 
     return (dispatch: Dispatch): void => {
+        dispatch(startLoading());
         const promise: Promise<void> = DataServiceMock.saveQuestionAnswer(authedUser, answer);
         promise
             .then(value => {
@@ -45,10 +47,11 @@ export function answerQuestion(answer: Answer, authedUser: User): Function {
                     answer: answer
                 };
                 dispatch(userUpdateAction)
-
+                dispatch(stopLoading());
             })
             .catch(reason => {
                 console.log("promise Failed", reason);
+                dispatch(stopLoading());
             })
 
     };
