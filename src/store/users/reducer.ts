@@ -1,4 +1,5 @@
 import {RECEIVE_USERS, UPDATE_USER_VOTES, UsersState, UsersTypes} from "./types";
+import User from "../../service/model/User";
 
 
 export default function usersReducer(state: UsersState = {users: []}, action: UsersTypes): UsersState {
@@ -8,12 +9,14 @@ export default function usersReducer(state: UsersState = {users: []}, action: Us
                 users: action.users
             };
         case UPDATE_USER_VOTES:
-            const authedUser = action.authedUser;
-            const users = state.users.filter(user => user.id !== authedUser.id);
-            authedUser.answers.push(action.answer);
-            users.push(authedUser);
+            const copiedAuthedUser = {...action.authedUser};
+            const copiedAnswer = {...action.answer}
+            let copiedUsers: User[] = [...state.users]
+            copiedUsers = copiedUsers.filter(user => user.id !== copiedAuthedUser.id);
+            copiedAuthedUser.answers.push(copiedAnswer);
+            copiedUsers.push(copiedAuthedUser);
             return {
-                users: users
+                users: copiedUsers
             };
         default :
             return state

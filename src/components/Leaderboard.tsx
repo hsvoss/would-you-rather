@@ -28,7 +28,6 @@ class Leaderboard extends Component<{ questions: Question[] }> {
 
 
 function mapStatToProps(state: AppState): { questions: Question[] } {
-    console.log("appState", state);
     return {
         questions: state.questionState.questions,
     };

@@ -60,7 +60,6 @@ class Dashboard extends Component<{ questions: Question[], loggedIn: User }> {
 
 
 function mapStatToProps(state: AppState): { questions: Question[], loggedIn: User } {
-    console.log("appState", state);
     return {
         questions: state.questionState.questions,
         loggedIn: state.choseCharacter.authedUser as User,
