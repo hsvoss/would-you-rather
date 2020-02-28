@@ -15,7 +15,7 @@ class Dashboard extends Component<{ questions: Question[] }> {
         return (
             <>
                 {this.props.questions.map(question =>
-                        // <Poll key={question.id} question={question} pollType={TAKEPOLL}/>
+                        // <Poll key={question.id} questionId={question.id} pollType={TAKEPOLL}/>
                         <Poll key={question.id} questionId={question.id} pollType={PREVIEW}/>
                     // <Poll key={question.id} question={question} pollType={STATISTICS}/>
                 )}
