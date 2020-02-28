@@ -91,7 +91,7 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
                             <Paper>
 
                                 <Route exact path='/' component={Dashboard}/>
-                                <Route path='/leaderboard' component={Leaderboard}/>
+                                <Route exact path='/leaderboard' component={Leaderboard}/>
                                 <Route exact path='/questions/:questionId' render={(router) => App.renderPoll(router)}/>
                                 <Route exact path='/questions/:questionId/statistics'
                                        render={(router) => App.renderStatistics(router)}/>

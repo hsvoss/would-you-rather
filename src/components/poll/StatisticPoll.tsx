@@ -1,6 +1,6 @@
 import React from "react";
 import VotingOption from "../../service/model/VotingOption";
-import {Button, CardContent, Chip, withTheme} from "@material-ui/core";
+import {Avatar, Button, CardContent, Chip, withTheme} from "@material-ui/core";
 import PieChart from "react-minimal-pie-chart";
 import {Theme} from "@material-ui/core/styles/createMuiTheme";
 import {connect} from "react-redux";
@@ -23,8 +23,26 @@ const StatisticPoll = (props: { optionOne: VotingOption, optionTwo: VotingOption
                     color: `${props.theme.palette.secondary.main}`
                 },
             ]}/>
-            <Chip label={props.optionOne.text} color="primary" style={{margin: 10}}/>
-            <Chip label={props.optionTwo.text} color="secondary" style={{margin: 10}}/>
+            <Chip
+                label={props.optionOne.text + " : " + props.optionOne.getTotalVotes()}
+                avatar={props.optionOne.hasUserVotedForThis(props.authedUser.id) ? <Avatar alt={props.authedUser.name} src={props.authedUser.avatarURL}/> : <></> }
+                color="primary"
+                style={{margin: 10}}/>
+            <Chip
+                label={props.optionTwo.text + " : " + props.optionTwo.getTotalVotes()}
+                avatar={props.optionTwo.hasUserVotedForThis(props.authedUser.id) ? <Avatar alt={props.authedUser.name} src={props.authedUser.avatarURL}/> : <></> }
+                color="secondary"
+                style={{margin: 10}}
+            />
+
+            {/*    public renderStatText = (userId: string):string => {*/}
+            {/*    let s: string = "\"" + this.text  + "\" : " + this.userVotedFor.length;*/}
+            {/*    if(this.userVotedFor.includes(userId)){*/}
+            {/*    s = s + " including your vote"*/}
+            {/*}*/}
+            {/*    return s;*/}
+            {/*};*/}
+            {/*    */}
         </CardContent>;
     } else {
         return <CardContent
