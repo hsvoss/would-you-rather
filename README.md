@@ -1,4 +1,5 @@
-Current work can be seen here: [amazing-bose-7280ca.netlify.com](https://amazing-bose-7280ca.netlify.com/)
+Current work can be seen here: [https://5e59856e74b901000b746900--sad-davinci-963cff.netlify.com/](https://5e59856e74b901000b746900--sad-davinci-963cff.netlify.com/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/aeb5587f-60e9-4c31-b2a4-aeb12058dc82/deploy-status)](https://app.netlify.com/sites/sad-davinci-963cff/deploys)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
