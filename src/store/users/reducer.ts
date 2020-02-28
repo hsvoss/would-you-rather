@@ -6,12 +6,12 @@ export default function usersReducer(state: UsersState = {users: []}, action: Us
     switch (action.type) {
         case RECEIVE_USERS :
             return {
-                users: action.users
+                users: JSON.parse(JSON.stringify(action.users))
             };
         case UPDATE_USER_VOTES:
-            const copiedAuthedUser = {...action.authedUser};
-            const copiedAnswer = {...action.answer}
-            let copiedUsers: User[] = [...state.users]
+            const copiedAuthedUser = JSON.parse(JSON.stringify(action.authedUser));
+            const copiedAnswer = JSON.parse(JSON.stringify(action.authedUser));
+            let copiedUsers: User[] = JSON.parse(JSON.stringify(state.users));
             copiedUsers = copiedUsers.filter(user => user.id !== copiedAuthedUser.id);
             copiedAuthedUser.answers.push(copiedAnswer);
             copiedUsers.push(copiedAuthedUser);

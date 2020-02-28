@@ -1,7 +1,3 @@
-import Question from "../../service/model/Question";
-import User from "../../service/model/User";
-import Answer from "../../service/model/Answer";
-
 export const LOADINGSTART = 'LOADINGSTART';
 export const LOADINGSTOP = 'LOADINGSTOP';
 

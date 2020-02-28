@@ -1,5 +1,5 @@
 import User from "./model/User";
-import Question from "./model/Question";
+import Question, {addAnswer} from "./model/Question";
 import Answer from "./model/Answer";
 import VotingOption from "./model/VotingOption";
 
@@ -103,11 +103,6 @@ let questions: Question[] = [
 
 export default class DataServiceMock {
 
-    public static getInstantQuestion = (): Question => {
-        return questions[0];
-    };
-
-
     public static generateUID = (): string => {
         return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
     };
@@ -115,23 +110,26 @@ export default class DataServiceMock {
 
     public static getQuestions = (): Promise<Question[]> => {
         return new Promise<Question[]>((res) => {
-            setTimeout(() => res(questions), 1000);
+            setTimeout(() => res(JSON.parse(JSON.stringify(questions))), 1000);
         })
     };
 
     public static getUsers = (): Promise<User[]> => {
         return new Promise<User[]>((res) => {
-            setTimeout(() => res(users), 1000);
+            setTimeout(() => res(JSON.parse(JSON.stringify(users))), 1000);
         })
     };
 
     public static saveQuestionAnswer = (authedUser: User, answer: Answer): Promise<void> => {
 
+        const authedUserServerCopy: User = JSON.parse(JSON.stringify(authedUser));
+        const answerServerCopy: Answer = JSON.parse(JSON.stringify(answer));
+
         function helperMethod(): void {
-            users.find(user => user.id === authedUser.id)
-                ?.questionIDs.push(answer.questionId);
-            let find: Question | undefined = questions.find(q => q.id === answer.questionId);
-            find?.addAnswer(answer, authedUser.id);
+            users.find(user => user.id === authedUserServerCopy.id)
+                ?.questionIDs.push(answerServerCopy.questionId);
+            let find: Question = questions.find(q => q.id === answerServerCopy.questionId) as Question;
+            addAnswer(answerServerCopy, authedUserServerCopy.id, find);
         }
 
         return new Promise<void>((resolve) => {
@@ -141,46 +139,18 @@ export default class DataServiceMock {
     };
 
     public static saveQuestion = (question: Question): Promise<void> => {
-        return new Promise<void>(() => {
-            setTimeout(() => {
-                let user: User | undefined = users.find(user => user.id === authorId);
-                let authorId: string = question.authorId;
-                questions.push(question);
-                user?.questionIDs.push(question.id);
-            }, 1000)
+        const questionServerCopy = JSON.parse(JSON.stringify(question));
+
+        const helperMethod = (): void => {
+            let authorId: string = questionServerCopy.authorId;
+            let user: User | undefined = users.find(user => user.id === authorId);
+            questions.push(questionServerCopy);
+            user?.questionIDs.push(questionServerCopy.id);
+        };
+        return new Promise<void>((resolve) => {
+            setTimeout(() => resolve(helperMethod()), 1000)
         });
     };
-
-
-    // export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
-    //     return new Promise((res, rej) => {
-    //         setTimeout(() => {
-    //             users = {
-    //                 ...users,
-    //                 [authedUser]: {
-    //                     ...users[authedUser],
-    //                     answers: {
-    //                         ...users[authedUser].answers,
-    //                         [qid]: answer
-    //                     }
-    //                 }
-    //             }
-    //
-    //             questions = {
-    //                 ...questions,
-    //                 [qid]: {
-    //                     ...questions[qid],
-    //                     [answer]: {
-    //                         ...questions[qid][answer],
-    //                         votes: questions[qid][answer].votes.concat([authedUser])
-    //                     }
-    //                 }
-    //             }
-    //
-    //             res()
-    //         }, 500)
-    //     })
-    // }
 
 }
 

@@ -7,13 +7,13 @@ export default class VotingOption {
         this.text = text;
     }
 
-    public getTotalVotes = () => {
-        return this.userVotedFor.length;
-    };
 
-    public hasUserVotedForThis = (userId: string): boolean => {
-        return this.userVotedFor.includes(userId);
-    };
+}
 
+export function hasUserVotedForThis(votingOption: VotingOption, userId: string) {
+    return votingOption.userVotedFor.includes(userId);
+}
 
+export function getTotalVotes(votingOption: VotingOption) {
+    return votingOption.userVotedFor.length;
 }

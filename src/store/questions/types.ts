@@ -2,6 +2,7 @@ import Question from "../../service/model/Question";
 import User from "../../service/model/User";
 import Answer from "../../service/model/Answer";
 
+export const CREATE_QUESTION = 'CREATE_QUESTION';
 export const RECEIVE_QUESTION = 'RECEIVE_QUESTION';
 export const ANSWER_QUESTION = 'ANSWER_QUESTION';
 
@@ -14,12 +15,16 @@ interface ReceiveQuestions {
     questions: Question[]
 }
 
+interface CreateQuestion {
+    type: typeof CREATE_QUESTION,
+    question:Question
+}
+
 export interface AnswerQuestions {
     type: typeof ANSWER_QUESTION,
-    question: Question,
     answer: Answer,
     authedUser: User
 }
 
 
-export type QuestionsTypes = ReceiveQuestions | AnswerQuestions
+export type QuestionsTypes = ReceiveQuestions | AnswerQuestions | CreateQuestion

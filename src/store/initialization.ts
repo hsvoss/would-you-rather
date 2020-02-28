@@ -1,6 +1,5 @@
 import DataServiceMock from "../service/DataServiceMock";
 // import {getUsers_2} from "../service/DataServiceMock"
-import {hideLoading, showLoading} from "react-redux-loading";
 import Question from "../service/model/Question";
 import User from "../service/model/User";
 import {receiveUsers} from "./users/actions";

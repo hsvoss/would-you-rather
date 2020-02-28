@@ -12,6 +12,7 @@ import {logout} from "./store/chooseCharacter/actions";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import {Route, RouteComponentProps, withRouter} from 'react-router-dom'
 import Poll, {STATISTICS, TAKEPOLL} from "./components/poll/Poll";
+import CreateNewQuestion from "./components/CreateNewQuestion";
 
 
 class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: User | null, location: any, history: any }, { tabNumber: number }> {
@@ -91,6 +92,7 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
                             <Paper>
 
                                 <Route exact path='/' component={Dashboard}/>
+                                <Route exact path='/new' component={CreateNewQuestion}/>
                                 <Route exact path='/leaderboard' component={Leaderboard}/>
                                 <Route exact path='/questions/:questionId' render={(router) => App.renderPoll(router)}/>
                                 <Route exact path='/questions/:questionId/statistics'

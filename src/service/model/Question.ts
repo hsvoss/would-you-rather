@@ -1,6 +1,5 @@
 import VotingOption from "./VotingOption";
 import Answer from "./Answer";
-import DataServiceMock from "../DataServiceMock";
 
 export default class Question {
     public id: string;
@@ -10,7 +9,7 @@ export default class Question {
     public optionTwo: VotingOption;
 
 
-    constructor(id: string = DataServiceMock.generateUID(), authorId: string, timestamp: number, optionOne: VotingOption, optionTwo: VotingOption) {
+    constructor(id: string, authorId: string, timestamp: number, optionOne: VotingOption, optionTwo: VotingOption) {
         this.id = id;
         this.authorId = authorId;
         this.timestamp = timestamp;
@@ -18,11 +17,12 @@ export default class Question {
         this.optionTwo = optionTwo;
     }
 
-    public addAnswer(answer: Answer, userId: string) {
-        if (answer.chosenAnswer === 'optionOne') {
-            this.optionOne.userVotedFor.push(userId);
-        } else {
-            this.optionTwo.userVotedFor.push(userId);
-        }
+}
+
+export function addAnswer(answer: Answer, userId: string, questionToAddTheAnswer: Question){
+    if (answer.chosenAnswer === 'optionOne') {
+        questionToAddTheAnswer.optionOne.userVotedFor.push(userId);
+    } else {
+        questionToAddTheAnswer.optionTwo.userVotedFor.push(userId);
     }
 }

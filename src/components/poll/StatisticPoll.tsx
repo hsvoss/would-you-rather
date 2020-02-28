@@ -1,5 +1,5 @@
 import React from "react";
-import VotingOption from "../../service/model/VotingOption";
+import VotingOption, {getTotalVotes, hasUserVotedForThis} from "../../service/model/VotingOption";
 import {Avatar, Button, CardContent, Chip, withTheme} from "@material-ui/core";
 import PieChart from "react-minimal-pie-chart";
 import {Theme} from "@material-ui/core/styles/createMuiTheme";
@@ -14,35 +14,28 @@ const StatisticPoll = (props: { optionOne: VotingOption, optionTwo: VotingOption
             <PieChart radius={20} startAngle={90} viewBoxSize={[2, 1]} animate={true} data={[
                 {
                     title: `${props.optionOne.text}`,
-                    value: props.optionOne.getTotalVotes(),
+                    value: getTotalVotes(props.optionOne),
                     color: `${props.theme.palette.primary.main}`
                 },
                 {
                     title: `${props.optionTwo.text}`,
-                    value: props.optionTwo.getTotalVotes(),
+                    value: getTotalVotes(props.optionTwo),
                     color: `${props.theme.palette.secondary.main}`
                 },
             ]}/>
             <Chip
-                label={props.optionOne.text + " : " + props.optionOne.getTotalVotes()}
-                avatar={props.optionOne.hasUserVotedForThis(props.authedUser.id) ? <Avatar alt={props.authedUser.name} src={props.authedUser.avatarURL}/> : <></> }
+                label={props.optionOne.text + " : " + getTotalVotes(props.optionOne)}
+                avatar={hasUserVotedForThis(props.optionOne, props.authedUser.id) ?
+                    <Avatar alt={props.authedUser.name} src={props.authedUser.avatarURL}/> : <></>}
                 color="primary"
                 style={{margin: 10}}/>
             <Chip
-                label={props.optionTwo.text + " : " + props.optionTwo.getTotalVotes()}
-                avatar={props.optionTwo.hasUserVotedForThis(props.authedUser.id) ? <Avatar alt={props.authedUser.name} src={props.authedUser.avatarURL}/> : <></> }
+                label={props.optionTwo.text + " : " + getTotalVotes(props.optionTwo)}
+                avatar={hasUserVotedForThis(props.optionTwo, props.authedUser.id) ?
+                    <Avatar alt={props.authedUser.name} src={props.authedUser.avatarURL}/> : <></>}
                 color="secondary"
                 style={{margin: 10}}
             />
-
-            {/*    public renderStatText = (userId: string):string => {*/}
-            {/*    let s: string = "\"" + this.text  + "\" : " + this.userVotedFor.length;*/}
-            {/*    if(this.userVotedFor.includes(userId)){*/}
-            {/*    s = s + " including your vote"*/}
-            {/*}*/}
-            {/*    return s;*/}
-            {/*};*/}
-            {/*    */}
         </CardContent>;
     } else {
         return <CardContent
