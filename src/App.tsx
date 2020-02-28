@@ -89,10 +89,10 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
                                 </IconButton>
                             </Toolbar>
                             {/*</AppBar>*/}
-                            <Grid  container
-                                   direction="column"
-                                   // justify="center"
-                                   alignItems="center" >
+                            <Grid container
+                                  direction="column"
+                                // justify="center"
+                                  alignItems="center">
                                 <Route exact path='/' component={Dashboard}/>
                                 <Route exact path='/new' component={CreateNewQuestion}/>
                                 <Route exact path='/leaderboard' component={Leaderboard}/>

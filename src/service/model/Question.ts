@@ -19,7 +19,7 @@ export default class Question {
 
 }
 
-export function addAnswer(answer: Answer, userId: string, questionToAddTheAnswer: Question){
+export function addAnswer(answer: Answer, userId: string, questionToAddTheAnswer: Question) {
     if (answer.chosenAnswer === 'optionOne') {
         questionToAddTheAnswer.optionOne.userVotedFor.push(userId);
     } else {

@@ -15,9 +15,9 @@ ReactDOM.render(
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline/>
         <Router>
-        <Provider store={store}>
-            <App/>
-        </Provider>
+            <Provider store={store}>
+                <App/>
+            </Provider>
         </Router>
     </ThemeProvider>
     , document.getElementById('root'));

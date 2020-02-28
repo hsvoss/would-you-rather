@@ -17,7 +17,7 @@ interface ReceiveQuestions {
 
 interface CreateQuestion {
     type: typeof CREATE_QUESTION,
-    question:Question
+    question: Question
 }
 
 export interface AnswerQuestions {

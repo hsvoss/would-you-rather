@@ -30,8 +30,8 @@ class TakePoll extends Component<{
             or
             <Button variant="outlined" color="primary" style={{margin: 20}}
                     onClick={() => {
-                       this.props.dispatch(answerQuestion(new Answer(this.props.questionId, 'optionTwo'), this.props.authedUser as User));
-                       this.props.history.push(`/questions/${this.props.questionId}/statistics`);
+                        this.props.dispatch(answerQuestion(new Answer(this.props.questionId, 'optionTwo'), this.props.authedUser as User));
+                        this.props.history.push(`/questions/${this.props.questionId}/statistics`);
                     }}
             >{this.props.optionTwo.text}</Button>
             <p style={{textAlign: 'right'}}>{new Date(this.props.timestamp).toLocaleString()}</p>
