@@ -40,21 +40,21 @@ class Dashboard extends Component<{ questions: Question[], loggedIn: User }> {
         );
 
     private renderAnswered = () => this.props.questions
-        .filter(this.answeredByAuthedCharacter)
+        .filter(question => this.answeredByAuthedCharacter(question))
         .sort(this.byDate)
         .map(question =>
             <Poll key={question.id} questionId={question.id} pollType={STATISTICS}/>
         );
 
 
-    private answeredByAuthedCharacter = (question: Question): boolean => {
-        const loggedIn: string = this.props.loggedIn.id;
-        return question.optionOne.userVotedFor.includes(loggedIn) || question.optionTwo.userVotedFor.includes(loggedIn);
-    };
-
     private byDate = (a: Question, b: Question) => {
         return b.timestamp - a.timestamp
     };
+
+    private answeredByAuthedCharacter = (question: Question): boolean => {
+        const loggedInId: string = this.props.loggedIn.id;
+        return question.optionOne.userVotedFor.includes(loggedInId) || question.optionTwo.userVotedFor.includes(loggedInId);
+    }
 
 }
 

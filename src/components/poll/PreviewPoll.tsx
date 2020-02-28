@@ -10,7 +10,7 @@ const PreviewPoll: React.FC<PreviewPollProps> = (props) => {
 
     const toPoll = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
-        props.history.push(`/poll/${props.quetionId}`);
+        props.history.push(`/questions/${props.quetionId}`);
     };
 
     return (<CardContent style={{textAlign: 'center'}}>

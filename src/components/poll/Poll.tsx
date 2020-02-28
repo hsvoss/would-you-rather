@@ -41,6 +41,8 @@ class Poll extends Component<{
             user => user.id === question.authorId
         );
 
+        // @ts-ignore
+        // @ts-ignore
         return (
             <Card variant={"outlined"} style={{maxWidth: 800, minWidth: 320}}>
                 <CardHeader

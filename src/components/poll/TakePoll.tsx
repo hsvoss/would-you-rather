@@ -24,14 +24,14 @@ class TakePoll extends Component<{
             <Button variant="outlined" color="primary" style={{margin: 20}}
                     onClick={() => {
                         this.props.dispatch(answerQuestion(new Answer(this.props.questionId, 'optionOne'), this.props.authedUser as User));
-                        this.props.history.push(`/poll/${this.props.questionId}/statistics`);
+                        this.props.history.push(`/questions/${this.props.questionId}/statistics`);
                     }}
             >{this.props.optionOne.text}</Button>
             or
             <Button variant="outlined" color="primary" style={{margin: 20}}
                     onClick={() => {
-                        this.props.dispatch(answerQuestion(new Answer(this.props.questionId, 'optionTwo'), this.props.authedUser as User));
-                        this.props.history.push(`/poll/${this.props.questionId}/statistics`);
+                       this.props.dispatch(answerQuestion(new Answer(this.props.questionId, 'optionTwo'), this.props.authedUser as User));
+                       this.props.history.push(`/questions/${this.props.questionId}/statistics`);
                     }}
             >{this.props.optionTwo.text}</Button>
             <p style={{textAlign: 'right'}}>{new Date(this.props.timestamp).toLocaleString()}</p>
