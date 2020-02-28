@@ -17,7 +17,7 @@ class CreateNewQuestion extends Component<{ dispatch: Function, loggedIn: User }
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
         return (
-            <Card variant={"outlined"} style={{maxWidth: 800, minWidth: 320}}>
+            <Card variant={"outlined"} style={{width: 800, margin: 10}}>
                 <CardHeader
                     avatar={<Avatar alt={this.props.loggedIn.name} src={this.props.loggedIn.avatarURL}/>}
                     title={this.props.loggedIn.name + " creates a new question:"}

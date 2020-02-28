@@ -44,7 +44,7 @@ class Poll extends Component<{
         // @ts-ignore
         // @ts-ignore
         return (
-            <Card variant={"outlined"} style={{maxWidth: 800, minWidth: 320}}>
+            <Card variant={"outlined"} style={{width: 800, margin: 10}}>
                 <CardHeader
                     avatar={<Avatar alt={author?.name} src={author?.avatarURL}/>}
                     title={author?.name + " asks:"}

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Avatar, IconButton, LinearProgress, Paper, Tab, Tabs, Toolbar, Typography} from "@material-ui/core";
+import {Avatar, Grid, IconButton, LinearProgress, Tab, Tabs, Toolbar, Typography} from "@material-ui/core";
 import 'typeface-roboto';
 import Dashboard from "./components/Dashboard";
 import Leaderboard from "./components/Leaderboard";
@@ -89,18 +89,17 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
                                 </IconButton>
                             </Toolbar>
                             {/*</AppBar>*/}
-                            <Paper>
-
+                            <Grid  container
+                                   direction="column"
+                                   // justify="center"
+                                   alignItems="center" >
                                 <Route exact path='/' component={Dashboard}/>
                                 <Route exact path='/new' component={CreateNewQuestion}/>
                                 <Route exact path='/leaderboard' component={Leaderboard}/>
                                 <Route exact path='/questions/:questionId' render={(router) => App.renderPoll(router)}/>
                                 <Route exact path='/questions/:questionId/statistics'
                                        render={(router) => App.renderStatistics(router)}/>
-                                {/*<Dashboard/>*/}
-                                {/*<Leaderboard/>*/}
-                                {/*<Poll question={DataServiceMock.getInstantQuestion()}/>*/}
-                            </Paper>
+                            </Grid>
                         </>
                 }
             </>

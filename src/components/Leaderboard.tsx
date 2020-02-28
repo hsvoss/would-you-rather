@@ -13,7 +13,7 @@ class Leaderboard extends Component<{ users: User[] }> {
                 {this.props.users
                     .sort((a, b) => (b.questionIDs.length + b.answers.length) - (a.questionIDs.length + a.answers.length))
                     .map(user =>
-                        <Card key={user.id} variant={"outlined"} style={{maxWidth: 800, minWidth: 320}}>
+                        <Card variant={"outlined"} style={{width: 800, margin: 10}}>
                             <CardHeader
                                 avatar={<Avatar alt={user.name} src={user.avatarURL}/>}
                                 title={user.name}
