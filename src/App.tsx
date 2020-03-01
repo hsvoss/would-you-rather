@@ -23,7 +23,7 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
     };
 
     private getNumberFromPath(): number {
-        if (this.props.location.pathname === '/new') {
+        if (this.props.location.pathname === '/add') {
             return 1;
         } else if (this.props.location.pathname === '/leaderboard') {
             return 2;
@@ -43,7 +43,7 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
         }));
 
         if (newValue === 1) {
-            this.props.history.push('/new');
+            this.props.history.push('/add');
         } else if (newValue === 2) {
             this.props.history.push('/leaderboard');
         } else {
@@ -94,7 +94,7 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
                                   alignItems="center">
                                 <Switch>
                                     <Route exact path='/' component={Dashboard}/>
-                                    <Route exact path='/new' component={CreateNewQuestion}/>
+                                    <Route exact path='/add' component={CreateNewQuestion}/>
                                     <Route exact path='/leaderboard' component={Leaderboard}/>
                                     <Route exact path='/questions/:questionId'
                                            render={(router) => App.renderPoll(router)}/>
