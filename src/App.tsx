@@ -10,9 +10,10 @@ import User from "./service/model/User";
 import Login from "./components/Login";
 import {logout} from "./store/chooseCharacter/actions";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import {Route, RouteComponentProps, withRouter} from 'react-router-dom'
+import {Route, RouteComponentProps, Switch, withRouter} from 'react-router-dom'
 import Poll, {STATISTICS, TAKEPOLL} from "./components/poll/Poll";
 import CreateNewQuestion from "./components/CreateNewQuestion";
+import PageFourOFour from "./components/PageFourOFour";
 
 
 class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: User | null, location: any, history: any }, { tabNumber: number }> {
@@ -88,17 +89,19 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
                                     <ExitToAppIcon/>
                                 </IconButton>
                             </Toolbar>
-                            {/*</AppBar>*/}
                             <Grid container
                                   direction="column"
-                                // justify="center"
                                   alignItems="center">
-                                <Route exact path='/' component={Dashboard}/>
-                                <Route exact path='/new' component={CreateNewQuestion}/>
-                                <Route exact path='/leaderboard' component={Leaderboard}/>
-                                <Route exact path='/questions/:questionId' render={(router) => App.renderPoll(router)}/>
-                                <Route exact path='/questions/:questionId/statistics'
-                                       render={(router) => App.renderStatistics(router)}/>
+                                <Switch>
+                                    <Route exact path='/' component={Dashboard}/>
+                                    <Route exact path='/new' component={CreateNewQuestion}/>
+                                    <Route exact path='/leaderboard' component={Leaderboard}/>
+                                    <Route exact path='/questions/:questionId'
+                                           render={(router) => App.renderPoll(router)}/>
+                                    <Route exact path='/questions/:questionId/statistics'
+                                           render={(router) => App.renderStatistics(router)}/>
+                                    <Route component={PageFourOFour}/>
+                                </Switch>
                             </Grid>
                         </>
                 }
