@@ -7,6 +7,7 @@ import {Dispatch} from "redux";
 import {UPDATE_USER_VOTES, UsersTypes} from "../users/types";
 import {startLoading, stopLoading} from "../loading/actions";
 import VotingOption from "../../service/model/VotingOption";
+import {askQuestion} from "../users/actions";
 
 
 export function receiveQuestions(questions: Question[]): QuestionsTypes {
@@ -34,7 +35,9 @@ export function createQuestion(authorId: string, optionA: string, optionB: strin
             type: CREATE_QUESTION,
             question: question
         };
+
         dispatch(questionCreateAction);
+        dispatch(askQuestion(authorId, question.id));
         dispatch(stopLoading());
     };
 }

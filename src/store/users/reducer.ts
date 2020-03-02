@@ -1,4 +1,4 @@
-import {RECEIVE_USERS, UPDATE_USER_VOTES, UsersState, UsersTypes} from "./types";
+import {RECEIVE_USERS, UPDATE_USER_ASKED_QUESTION, UPDATE_USER_VOTES, UsersState, UsersTypes} from "./types";
 import User from "../../service/model/User";
 
 
@@ -17,6 +17,17 @@ export default function usersReducer(state: UsersState = {users: []}, action: Us
             copiedUsers.push(copiedAuthedUser);
             return {
                 users: copiedUsers
+            };
+        case UPDATE_USER_ASKED_QUESTION:
+            let copiedUsers2: User[] = JSON.parse(JSON.stringify(state.users));
+            copiedUsers2 = copiedUsers2.map(user => {
+                if (user.id === action.authedUserId) {
+                    user.questionIDs.push(action.questionId);
+                }
+                return user;
+            });
+            return {
+                users: copiedUsers2
             };
         default :
             return state
