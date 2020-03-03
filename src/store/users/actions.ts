@@ -1,5 +1,6 @@
 import User from "../../service/model/User";
-import {RECEIVE_USERS, UPDATE_USER_ASKED_QUESTION, UsersTypes} from "./types";
+import {RECEIVE_USERS, UPDATE_USER_ASKED_QUESTION, UPDATE_USER_VOTES, UsersTypes} from "./types";
+import Answer from "../../service/model/Answer";
 
 export function receiveUsers(users: User[]): UsersTypes {
     return {
@@ -13,5 +14,13 @@ export function askQuestion(userId: string, questionId: string): UsersTypes {
         type: UPDATE_USER_ASKED_QUESTION,
         authedUserId: userId,
         questionId: questionId
+    }
+}
+
+export function userAnsweredQuestion(user: User, answer: Answer): UsersTypes {
+    return {
+        type: UPDATE_USER_VOTES,
+        authedUser: user,
+        answer: answer
     }
 }

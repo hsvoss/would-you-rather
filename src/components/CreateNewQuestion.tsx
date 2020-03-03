@@ -50,7 +50,7 @@ class CreateNewQuestion extends Component<{ dispatch: Function, loggedIn: User }
 
 function mapStatToProps(state: AppState): { loggedIn: User } {
     return {
-        loggedIn: state.choseCharacter.authedUser as User
+        loggedIn: state.userState.users.find(user => user.id === state.choseCharacter.authedUserId) as User
     };
 }
 

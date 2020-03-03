@@ -16,7 +16,7 @@ import CreateNewQuestion from "./components/CreateNewQuestion";
 import PageFourOFour from "./components/PageFourOFour";
 
 
-class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: User | null, location: any, history: any }, { tabNumber: number }> {
+class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: User | undefined, location: any, history: any }, { tabNumber: number }> {
 
     state = {
         tabNumber: this.getNumberFromPath(),
@@ -125,7 +125,7 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
 const mapStateToProps = (state: AppState) => {
     return ({
         loading: state.loadingBar.loading,
-        loggedIn: state.choseCharacter.authedUser
+        loggedIn: state.userState.users?.find(user => user.id === state.choseCharacter.authedUserId)
     });
 };
 

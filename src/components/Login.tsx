@@ -19,7 +19,7 @@ class Login extends Component<{ users: User[], dispatch: Function }> {
                 <Grid container justify="center">
                     {this.props.users?.map((user: User) =>
                         <Card key={user.id} style={{margin: 10, padding: 10}}
-                              onClick={() => this.props.dispatch(setChosenCharacter(user))}>
+                              onClick={() => this.props.dispatch(setChosenCharacter(user.id))}>
                             <Avatar
                                 alt={user?.name} src={user?.avatarURL}
                                 style={{

@@ -67,7 +67,7 @@ const answeredByAuthedCharacter = (optionOne: VotingOption, optionTwo: VotingOpt
 
 const mapStateToProps = (state: AppState) => {
     return ({
-        authedUser: state.choseCharacter.authedUser
+        authedUser: state.userState.users.find(user => user.id === state.choseCharacter.authedUserId) as User
     })
 };
 

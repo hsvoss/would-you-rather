@@ -42,7 +42,7 @@ class TakePoll extends Component<{
 
 const mapStateToProps = (state: AppState) => {
     return ({
-        authedUser: state.choseCharacter.authedUser
+        authedUser: state.userState.users.find(user => user.id === state.choseCharacter.authedUserId) as User
     })
 };
 

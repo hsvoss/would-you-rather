@@ -2,7 +2,7 @@ import {CharacterActionTypes, CharacterState, LOGOUT, SET_CHOSEN_CHARACTER} from
 
 function initCharState(): CharacterState {
     return {
-        authedUser: null,
+        authedUserId: "",
     };
 }
 
@@ -10,11 +10,11 @@ export default function choseCharacterReducer(state: CharacterState = initCharSt
     switch (action.type) {
         case LOGOUT:
             return {
-                authedUser: null,
+                authedUserId: "",
             };
         case SET_CHOSEN_CHARACTER :
             return {
-                authedUser: "authedUser" in action ? action.authedUser : null,
+                authedUserId: action.authedUserId as string,
             };
         default:
             return state

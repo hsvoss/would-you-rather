@@ -1,15 +1,19 @@
-import {CharacterActionTypes, LOGOUT, LogoutAction, SET_CHOSEN_CHARACTER} from "./types";
-import User from "../../service/model/User";
+import {
+  CharacterActionTypes,
+  LOGOUT,
+  SET_CHOSEN_CHARACTER,
+  LogoutAction
+} from "./types";
 
-export function setChosenCharacter(authedUser: User): CharacterActionTypes {
-    return {
-        type: SET_CHOSEN_CHARACTER,
-        authedUser: authedUser
-    };
+export function setChosenCharacter(authedUserId: string): CharacterActionTypes {
+  return {
+    type: SET_CHOSEN_CHARACTER,
+    authedUserId: authedUserId
+  };
 }
 
 export function logout(): LogoutAction {
-    return {
-        type: LOGOUT,
-    };
+  return {
+    type: LOGOUT
+  };
 }
