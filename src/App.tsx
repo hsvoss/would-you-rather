@@ -71,8 +71,8 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
                                 <Tabs
                                     value={this.state.tabNumber}
                                     onChange={this.handleTabChange}
-                                    indicatorColor="primary"
-                                    textColor="primary"
+                                    indicatorColor={this.props.location.pathname.match("/questions/.*" ) ? "none" : "primary"}
+                                    textColor={this.props.location.pathname.match("/questions/.*" ) ? "none" : "primary"}
                                     centered
                                     style={{flexGrow: 1,}}
                                 >
