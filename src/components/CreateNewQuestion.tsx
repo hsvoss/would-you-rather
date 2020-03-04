@@ -6,16 +6,17 @@ import CardHeader from "@material-ui/core/CardHeader";
 import {Avatar, Button, CardContent, TextField} from "@material-ui/core";
 import User from "../service/model/User";
 import {createQuestion} from "../store/questions/actions";
+import { withRouter } from "react-router-dom";
 
 
-class CreateNewQuestion extends Component<{ dispatch: Function, loggedIn: User }> {
+class CreateNewQuestion extends Component<{ dispatch: Function, loggedIn: User ,  location: any, history: any}> {
 
     state = {
         answerA: "",
         answerB: "",
     };
 
-    render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
+    render(): React.ReactElement | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
         return (
             <Card variant={"outlined"} style={{width: 800, margin: 10}}>
                 <CardHeader
@@ -36,6 +37,7 @@ class CreateNewQuestion extends Component<{ dispatch: Function, loggedIn: User }
                             variant="contained" color="primary" style={{margin: 20}}
                             onClick={() => {
                                 this.props.dispatch(createQuestion(this.props.loggedIn.id, this.state.answerA, this.state.answerB));
+                                this.props.history.push('/');
                             }}
                         >Create Poll
                         </Button>
@@ -54,5 +56,5 @@ function mapStatToProps(state: AppState): { loggedIn: User } {
     };
 }
 
-export default connect(mapStatToProps)(CreateNewQuestion)
+export default withRouter(connect(mapStatToProps)(CreateNewQuestion));
 
