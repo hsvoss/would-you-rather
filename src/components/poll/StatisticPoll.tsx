@@ -11,6 +11,21 @@ import {withRouter} from "react-router-dom";
 const StatisticPoll = (props: { optionOne: VotingOption, optionTwo: VotingOption, authedUser: User, theme: Theme, location: any, history: any }) => {
     if (answeredByAuthedCharacter(props.optionOne, props.optionTwo, props.authedUser)) {
         return <CardContent style={{textAlign: 'center'}}>
+
+            <Chip
+                label={props.optionOne.text + " : " + getTotalVotes(props.optionOne)}
+                avatar={hasUserVotedForThis(props.optionOne, props.authedUser.id) ?
+                    <Avatar alt={props.authedUser.name} src={props.authedUser.avatarURL}/> : <></>}
+                color="primary"
+                style={{margin: 10}}/>
+                or
+            <Chip
+                label={props.optionTwo.text + " : " + getTotalVotes(props.optionTwo)}
+                avatar={hasUserVotedForThis(props.optionTwo, props.authedUser.id) ?
+                    <Avatar alt={props.authedUser.name} src={props.authedUser.avatarURL}/> : <></>}
+                color="secondary"
+                style={{margin: 10}}
+            />
             <PieChart radius={20} startAngle={90} viewBoxSize={[2, 1]} animate={true} data={[
                 {
                     title: `${props.optionOne.text}`,
@@ -23,19 +38,6 @@ const StatisticPoll = (props: { optionOne: VotingOption, optionTwo: VotingOption
                     color: `${props.theme.palette.secondary.main}`
                 },
             ]}/>
-            <Chip
-                label={props.optionOne.text + " : " + getTotalVotes(props.optionOne)}
-                avatar={hasUserVotedForThis(props.optionOne, props.authedUser.id) ?
-                    <Avatar alt={props.authedUser.name} src={props.authedUser.avatarURL}/> : <></>}
-                color="primary"
-                style={{margin: 10}}/>
-            <Chip
-                label={props.optionTwo.text + " : " + getTotalVotes(props.optionTwo)}
-                avatar={hasUserVotedForThis(props.optionTwo, props.authedUser.id) ?
-                    <Avatar alt={props.authedUser.name} src={props.authedUser.avatarURL}/> : <></>}
-                color="secondary"
-                style={{margin: 10}}
-            />
         </CardContent>;
     } else {
         return <CardContent
