@@ -11,7 +11,7 @@ import Login from "./components/Login";
 import {logout} from "./store/chooseCharacter/actions";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import {Route, RouteComponentProps, Switch, withRouter} from 'react-router-dom'
-import Poll, {STATISTICS, TAKEPOLL} from "./components/poll/Poll";
+import Poll, {POLL} from "./components/poll/Poll";
 import CreateNewQuestion from "./components/CreateNewQuestion";
 import PageFourOFour from "./components/PageFourOFour";
 
@@ -98,8 +98,6 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
                                     <Route exact path='/leaderboard' component={Leaderboard}/>
                                     <Route exact path='/questions/:questionId'
                                            render={(router) => App.renderPoll(router)}/>
-                                    <Route exact path='/questions/:questionId/statistics'
-                                           render={(router) => App.renderStatistics(router)}/>
                                     <Route component={PageFourOFour}/>
                                 </Switch>
                             </Grid>
@@ -111,12 +109,12 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
 
     private static renderPoll(router: RouteComponentProps<any>) {
         const {questionId} = router.match.params;
-        return <Poll questionId={questionId} pollType={TAKEPOLL}/>;
+        return <Poll questionId={questionId} pollType={POLL}/>;
     }
 
     private static renderStatistics(router: RouteComponentProps<any>) {
         const {questionId} = router.match.params;
-        return <Poll questionId={questionId} pollType={STATISTICS}/>;
+        return <Poll questionId={questionId} pollType={POLL}/>;
     }
 
 }

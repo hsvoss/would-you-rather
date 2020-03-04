@@ -10,7 +10,7 @@ export default function usersReducer(state: UsersState = {users: []}, action: Us
             };
         case UPDATE_USER_VOTES:
             const copiedAuthedUser = JSON.parse(JSON.stringify(action.authedUser));
-            const copiedAnswer = JSON.parse(JSON.stringify(action.authedUser));
+            const copiedAnswer = JSON.parse(JSON.stringify(action.answer));
             let copiedUsers: User[] = JSON.parse(JSON.stringify(state.users));
             copiedUsers = copiedUsers.filter(user => user.id !== copiedAuthedUser.id);
             copiedAuthedUser.answers.push(copiedAnswer);

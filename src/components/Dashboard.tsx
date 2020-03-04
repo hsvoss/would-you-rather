@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {AppState} from "../store";
 import Question from "../service/model/Question";
 import {Tab, Tabs} from "@material-ui/core";
-import Poll, {PREVIEW, STATISTICS} from "./poll/Poll";
+import Poll, {POLL, PREVIEW} from "./poll/Poll";
 import User from "../service/model/User";
 
 class Dashboard extends Component<{ questions: Question[], loggedIn: User }> {
@@ -43,7 +43,7 @@ class Dashboard extends Component<{ questions: Question[], loggedIn: User }> {
         .filter(question => this.answeredByAuthedCharacter(question))
         .sort(this.byDate)
         .map(question =>
-            <Poll key={question.id} questionId={question.id} pollType={STATISTICS}/>
+            <Poll key={question.id} questionId={question.id} pollType={POLL}/>
         );
 
 

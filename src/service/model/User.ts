@@ -16,3 +16,8 @@ export default class User {
         this.questionIDs = questionIDs;
     }
 }
+
+export function hasAnswered(user: User, answerID: string) {
+    let find = user.answers.find(answer => answer.questionId === answerID);
+    return find !== undefined
+}
