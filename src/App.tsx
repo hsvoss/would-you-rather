@@ -60,19 +60,17 @@ class App extends Component<{ dispatch: Function, loading: boolean, loggedIn: Us
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
         return (
             <>
-                {/*<LoadingBar/>*/}
                 {this.props.loading
                     ? <LinearProgress/>
                     : !this.props.loggedIn
                         ? <Login/>
                         : <>
-                            {/*<AppBar color={"default"}>*/}
                             <Toolbar>
                                 <Tabs
                                     value={this.state.tabNumber}
                                     onChange={this.handleTabChange}
-                                    indicatorColor={this.props.location.pathname.match("/questions/.*" ) ? "none" : "primary"}
-                                    textColor={this.props.location.pathname.match("/questions/.*" ) ? "none" : "primary"}
+                                    indicatorColor={this.props.location.pathname.match("/questions/.*") ? "none" : "primary"}
+                                    textColor={this.props.location.pathname.match("/questions/.*") ? "none" : "primary"}
                                     centered
                                     style={{flexGrow: 1,}}
                                 >

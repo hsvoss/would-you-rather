@@ -6,13 +6,13 @@ import {Tab, Tabs} from "@material-ui/core";
 import Poll, {POLL, PREVIEW} from "./poll/Poll";
 import User from "../service/model/User";
 
-class Dashboard extends Component<{ questions: Question[], loggedIn: User }> {
+class Dashboard extends Component<{ answeredQuestions: Question[], unAnsweredQuestions: Question[] }> {
 
     state = {
         tabNumber: 0,
     };
 
-    render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
+    render(): React.ReactElement | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
         return (
             <>
                 <Tabs
@@ -32,37 +32,42 @@ class Dashboard extends Component<{ questions: Question[], loggedIn: User }> {
         );
     }
 
-    private renderUnAnswered = () => this.props.questions
-        .filter(question => !this.answeredByAuthedCharacter(question))
-        .sort(this.byDate)
+    private renderUnAnswered = () => this.props.unAnsweredQuestions
         .map(question =>
             <Poll key={question.id} questionId={question.id} pollType={PREVIEW}/>
         );
 
-    private renderAnswered = () => this.props.questions
-        .filter(question => this.answeredByAuthedCharacter(question))
-        .sort(this.byDate)
+    private renderAnswered = () => this.props.answeredQuestions
         .map(question =>
             <Poll key={question.id} questionId={question.id} pollType={POLL}/>
         );
 
-
-    private byDate = (a: Question, b: Question) => {
-        return b.timestamp - a.timestamp
-    };
-
-    private answeredByAuthedCharacter = (question: Question): boolean => {
-        const loggedInId: string = this.props.loggedIn.id;
-        return question.optionOne.userVotedFor.includes(loggedInId) || question.optionTwo.userVotedFor.includes(loggedInId);
-    }
-
 }
 
 
-function mapStatToProps(state: AppState): { questions: Question[], loggedIn: User } {
+function mapStatToProps(state: AppState): { answeredQuestions: Question[], unAnsweredQuestions: Question[] } {
+
+    const loggedIn = state.userState.users.find(user => user.id === state.choseCharacter.authedUserId) as User;
+
+    const byDate = (a: Question, b: Question) => {
+        return b.timestamp - a.timestamp
+    };
+
+    const answeredByAuthedCharacter = (question: Question): boolean => {
+        const loggedInId: string = loggedIn.id;
+        return question.optionOne.userVotedFor.includes(loggedInId) || question.optionTwo.userVotedFor.includes(loggedInId);
+    };
+
+    const answeredQuestions = state.questionState.questions
+        .filter(question => answeredByAuthedCharacter(question))
+        .sort(byDate);
+    const unAnsweredQuestions = state.questionState.questions
+        .filter(question => answeredByAuthedCharacter(question))
+        .sort(byDate);
+
     return {
-        questions: state.questionState.questions,
-        loggedIn: state.userState.users.find(user => user.id === state.choseCharacter.authedUserId) as User
+        answeredQuestions: answeredQuestions,
+        unAnsweredQuestions: unAnsweredQuestions,
     };
 }
 
