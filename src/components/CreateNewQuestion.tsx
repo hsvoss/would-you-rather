@@ -6,10 +6,10 @@ import CardHeader from "@material-ui/core/CardHeader";
 import {Avatar, Button, CardContent, TextField} from "@material-ui/core";
 import User from "../service/model/User";
 import {createQuestion} from "../store/questions/actions";
-import { withRouter } from "react-router-dom";
+import {withRouter} from "react-router-dom";
 
 
-class CreateNewQuestion extends Component<{ dispatch: Function, loggedIn: User ,  location: any, history: any}> {
+class CreateNewQuestion extends Component<{ dispatch: Function, loggedIn: User, location: any, history: any }> {
 
     state = {
         answerA: "",

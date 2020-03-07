@@ -18,7 +18,7 @@ const StatisticPoll = (props: { optionOne: VotingOption, optionTwo: VotingOption
                     <Avatar alt={props.authedUser.name} src={props.authedUser.avatarURL}/> : <></>}
                 color="primary"
                 style={{margin: 10}}/>
-                or
+            or
             <Chip
                 label={props.optionTwo.text + " : " + getTotalVotes(props.optionTwo)}
                 avatar={hasUserVotedForThis(props.optionTwo, props.authedUser.id) ?

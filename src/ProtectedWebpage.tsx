@@ -14,19 +14,29 @@ import CreateNewQuestion from "./components/CreateNewQuestion";
 import PageFourOFour from "./components/PageFourOFour";
 
 
-class ProtectedWebpage extends Component<{ dispatch: Function, loggedIn: User | undefined, location: any, history: any }, { tabNumber: number }> {
+class ProtectedWebpage extends Component<{ dispatch: Function, loggedIn: User | undefined, location: any, history: any }, { tabNumber: number | boolean }> {
 
     state = {
         tabNumber: this.getNumberFromPath(),
     };
 
-    private getNumberFromPath(): number {
-        if (this.props.location.pathname === '/add') {
+    private getNumberFromPath(): number | boolean {
+        if (this.props.location.pathname === '/') {
+            return 0;
+        } else if (this.props.location.pathname === '/add') {
             return 1;
         } else if (this.props.location.pathname === '/leaderboard') {
             return 2;
         } else {
-            return 0;
+            return false;
+        }
+    }
+
+    componentDidUpdate(prevProps: any) {
+        if (this.props.location !== prevProps.location) {
+            this.setState({
+                tabNumber: this.getNumberFromPath(),
+            })
         }
     }
 
@@ -60,8 +70,8 @@ class ProtectedWebpage extends Component<{ dispatch: Function, loggedIn: User | 
                     <Tabs
                         value={this.state.tabNumber}
                         onChange={this.handleTabChange}
-                        indicatorColor={this.props.location.pathname.match("/questions/.*") ? "secondary" : "primary"}
-                        textColor={this.props.location.pathname.match("/questions/.*") ? "secondary" : "primary"}
+                        indicatorColor={"primary"}
+                        textColor={"primary"}
                         centered
                         style={{flexGrow: 1,}}
                     >
