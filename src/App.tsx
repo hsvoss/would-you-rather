@@ -15,10 +15,7 @@ class App extends Component<{ dispatch: Function, loading: boolean, }, { tabNumb
         this.props.dispatch(handleInitialData())
     }
 
-
     render() {
-
-
         return (
             this.props.loading
                 ? <LinearProgress/>
@@ -32,7 +29,6 @@ class App extends Component<{ dispatch: Function, loading: boolean, }, { tabNumb
 
     }
 }
-
 
 const mapStateToProps = (state: AppState) => {
     return ({

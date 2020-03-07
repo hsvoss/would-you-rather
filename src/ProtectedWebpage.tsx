@@ -48,7 +48,8 @@ class ProtectedWebpage extends Component<{ dispatch: Function, loggedIn: User | 
     };
 
     private logout() {
-        this.props.dispatch(logout())
+        this.props.dispatch(logout());
+        this.props.history.push('/');
     }
 
     render(): React.ReactElement | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
