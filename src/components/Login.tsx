@@ -6,14 +6,18 @@ import Card from "@material-ui/core/Card";
 import {Avatar, Grid, Typography, withStyles} from "@material-ui/core";
 import theme from "../theme";
 import {setChosenCharacter} from "../store/chooseCharacter/actions";
+import {withRouter} from "react-router-dom";
 
 
-class Login extends Component<{ users: User[], dispatch: Function, classes: any }> {
+class Login extends Component<{ users: User[], dispatch: Function, classes: any, location: any, history: any }> {
+
 
     render() {
+
+        const {from} = this.props.location.state || {from: {pathname: '/'}};
+
         return (
             <>
-                {/*<Paper variant={"outlined"} style={{maxWidth: 800, minWidth: 320}}>*/}
                 <Typography variant="h5" style={{textAlign: 'center'}}>Chose your character:</Typography>
                 <Grid container justify="center">
                     {this.props.users?.map((user: User) =>
@@ -22,7 +26,10 @@ class Login extends Component<{ users: User[], dispatch: Function, classes: any 
                             padding: 10,
                         }}
                               className={this.props.classes.characterCard}
-                              onClick={() => this.props.dispatch(setChosenCharacter(user.id))}>
+                              onClick={() => {
+                                  this.props.dispatch(setChosenCharacter(user.id));
+                                  this.props.history.push(from.pathname);
+                              }}>
                             <Avatar
                                 alt={user?.name} src={user?.avatarURL}
                                 style={{
@@ -35,13 +42,10 @@ class Login extends Component<{ users: User[], dispatch: Function, classes: any 
                 </Grid>
             </>
         )
+
     }
 
-
 }
-
-// dispatch(setChosenCharacter(CHOSEN_ID));
-
 
 const mapStateToProps = (state: AppState) => {
         return ({
@@ -58,7 +62,9 @@ const styles = {
     }
 };
 
-export default withStyles(styles)(connect(mapStateToProps)(Login));
+
+// @ts-ignore
+export default withStyles(styles)(withRouter(connect(mapStateToProps)(Login)));
 
 
 
