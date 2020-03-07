@@ -11,6 +11,7 @@ import TakePoll from "./TakePoll";
 import PreviewPoll from "./PreviewPoll";
 import StatisticPoll from "./StatisticPoll";
 import {AppState} from "../../store";
+import PageFourOFour from "../PageFourOFour";
 
 export const POLL = "poll";
 export const PREVIEW = "preview";
@@ -31,7 +32,7 @@ class Poll extends Component<{
         );
 
         if (question === undefined) {
-            return <></>;
+            return <PageFourOFour/>;
         }
 
         const {

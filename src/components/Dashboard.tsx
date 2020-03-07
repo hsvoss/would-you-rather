@@ -62,7 +62,7 @@ function mapStatToProps(state: AppState): { answeredQuestions: Question[], unAns
         .filter(question => answeredByAuthedCharacter(question))
         .sort(byDate);
     const unAnsweredQuestions = state.questionState.questions
-        .filter(question => answeredByAuthedCharacter(question))
+        .filter(question => !answeredByAuthedCharacter(question))
         .sort(byDate);
 
     return {
